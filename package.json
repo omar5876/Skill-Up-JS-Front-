@@ -3,6 +3,8 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+    "author": "gabodmc",
+  "homepage": "https://github.com/gabodmc/front-js-template-alkemy#readme",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
