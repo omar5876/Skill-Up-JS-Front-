@@ -23,9 +23,4 @@ npm run build
 - Cuando el trabajo este terminado, se debe generar el "Pull Request" o PR como le solemos llamar. El proyecto ya cuenta con un template de PR, por lo que ustedes solo tendran que completar con los datos que les indica el template. Esta seria una imagen de ejemplo de un PR con su evidencia en caso de falla y su caso de éxito.
 
 ![image](https://user-images.githubusercontent.com/79473217/198295580-95f8b955-4bdb-4fb5-8684-a40d8df102dc.png)
-- Las respuestas positivas se gestionan con el helper enpodintResponse, y los negativos con createHtppError de la libreria http-errors.
-Ejemplo de satisfactoria
-
-Ejemplo de respuesta negativa:
-![image](https://user-images.githubusercontent.com/79473217/193651690-f0081ce6-9d2e-43ca-9986-bec8a9082d7f.png)
 
