@@ -1,4 +1,4 @@
-# Frontend React Template
+# AlkiBank - FrontEnd
 
 ## ✅ Primero lo primero: instalar las dependencias iniciales del proyecto antes de trabajar:
 ```bash
