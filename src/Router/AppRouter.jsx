@@ -7,7 +7,7 @@ import CargaSaldo from "../Pages/CargaSaldo";
 import Movimientos from "../Pages/Movimientos";
 import Balance from "../Pages/Balance";
 import EnvioDinero from "../Pages/EnvioDinero";
-
+import Footer from "../Components/Global/Footer/Footer";
 
 function AppRouter() {
   return (
@@ -21,6 +21,7 @@ function AppRouter() {
         <Route path="/balance" element={<Balance />} />
         <Route path="/enviar-dinero" element={<EnvioDinero />} />
       </Routes>
+      <Footer />
     </Router>
   );
 }
