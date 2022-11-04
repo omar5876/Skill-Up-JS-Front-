@@ -6,12 +6,32 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedinIcon from "@mui/icons-material/Linkedin";
 import { Container, Box, Typography } from "@mui/material";
 
+import styled from "@emotion/styled";
+
 import "./Footer.css";
 
-function Footer() {
+// const StyledIcon = styled(Icon)`
+//   max-width: 600px;
+//   margin: 0 auto;
+//   display: flex;
+//   flex-direction: column;
+//   padding: 25px;
+//   margin-top: 5px;
+// `;
 
+const StyledFooter = styled(Box)`
+    width: 100vw,
+    display: flex,
+    color: white,
+    background-color: black,
+    justify-content: space-between,
+    padding: 2em 0em,
+    align-items: center,
+`;
+
+function Footer() {
   return (
-    <footer className="footer-container">
+    <StyledFooter>
       <Box className="footer-container-column">
         <Typography variant="book1">Copyright Wallet App</Typography>
       </Box>
@@ -29,7 +49,7 @@ function Footer() {
           <LinkedinIcon style={{ color: "white" }} />
         </a>
       </Box>
-    </footer>
+    </StyledFooter>
   );
 }
 
