@@ -10,23 +10,14 @@ import styled from "@emotion/styled";
 
 import "./Footer.css";
 
-// const StyledIcon = styled(Icon)`
-//   max-width: 600px;
-//   margin: 0 auto;
-//   display: flex;
-//   flex-direction: column;
-//   padding: 25px;
-//   margin-top: 5px;
-// `;
-
 const StyledFooter = styled(Box)`
-    width: 100vw,
-    display: flex,
-    color: white,
-    background-color: black,
-    justify-content: space-between,
-    padding: 2em 0em,
-    align-items: center,
+  width: 100vw;
+  display: flex;
+  color: white;
+  background-color: black;
+  justify-content: space-between;
+  padding: 2em 0em;
+  align-items: center;
 `;
 
 function Footer() {

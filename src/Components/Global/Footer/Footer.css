@@ -1,13 +1,3 @@
-/* .footer-container {
-    width: 100vw;
-    display: flex;
-    color: white;
-    background-color: black;
-    justify-content: space-between;
-    padding: 3em 0em;
-    align-items: center;
-} */
-
 .footer-container-column {
     display: flex;
     padding: 0px 30px;
