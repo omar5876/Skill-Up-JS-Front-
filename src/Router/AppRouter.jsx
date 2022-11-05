@@ -8,12 +8,11 @@ import Movimientos from "../Pages/Movimientos";
 import Balance from "../Pages/Balance";
 import EnvioDinero from "../Pages/EnvioDinero";
 
-
 function AppRouter() {
   return (
     <Router>
       <Routes>
-        <Route path="login" element={<Login />} />{" "}
+        <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="/" element={<Home />} />
         <Route path="movimientos" element={<Movimientos />} />{" "}
