@@ -1,5 +1,5 @@
 import React from "react";
-import Formulario from "../Components/Formularios/Formulario";
+import UserForm from "../Components/Formularios/FormContainer";
 import { Container, Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
@@ -34,7 +34,7 @@ function Login() {
         <Typography variant="book1" style={{ marginBottom: "1em" }}>
           Ingrese tus datos para iniciar sesion
         </Typography>
-        <Formulario />
+        <UserForm />
         <Typography variant="book1">
           No tienes cuenta?<Link to="/register">Registrate</Link>
         </Typography>
