@@ -10,18 +10,6 @@ function Form({ formik, validationSchema }) {
       <form onSubmit={formik.handleSubmit}>
         <TextField
           fullWidth
-          id="username"
-          name="username"
-          label="Nombre de usuario"
-          value={formik.values.username}
-          onChange={formik.handleChange}
-          error={formik.touched.username && Boolean(formik.errors.username)}
-          helperText={formik.touched.username && formik.errors.username}
-          style={{ marginBottom: "1em" }}
-        />
-
-        <TextField
-          fullWidth
           id="email"
           name="email"
           label="Email"
@@ -44,7 +32,7 @@ function Form({ formik, validationSchema }) {
           style={{ marginBottom: "1em" }}
         />
         <Button color="primary" variant="contained" fullWidth type="submit">
-          Ingresar
+          Ingresa
         </Button>
       </form>
     </Container>
