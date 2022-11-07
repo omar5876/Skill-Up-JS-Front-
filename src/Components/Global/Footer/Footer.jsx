@@ -8,8 +8,6 @@ import { Container, Box, Typography } from "@mui/material";
 
 import styled from "@emotion/styled";
 
-import "./Footer.css";
-
 const StyledFooter = styled(Box)`
   width: 100vw;
   display: flex;
@@ -23,20 +21,42 @@ const StyledFooter = styled(Box)`
 function Footer() {
   return (
     <StyledFooter>
-      <Box className="footer-container-column">
+      <Box
+        className="footer-container-column"
+        style={{ display: "flex", padding: "0px 30px" }}
+      >
         <Typography variant="book1">Copyright Wallet App</Typography>
       </Box>
-      <Box className="footer-container-column">
-        <a href="http://twitter.com/walletApp" target="_blank">
+      <Box
+        className="footer-container-column"
+        style={{ display: "flex", padding: "0px 30px" }}
+      >
+        <a
+          href="http://twitter.com/walletApp"
+          target="_blank"
+          style={{ marginRight: "10px" }}
+        >
           <TwitterIcon style={{ color: "white" }} />
         </a>
-        <a href="http://instagram.com/walletApp" target="_blank">
+        <a
+          href="http://instagram.com/walletApp"
+          target="_blank"
+          style={{ marginRight: "10px" }}
+        >
           <InstagramIcon style={{ color: "white" }} />
         </a>
-        <a href="http://facebook.com/walletApp" target="_blank">
+        <a
+          href="http://facebook.com/walletApp"
+          target="_blank"
+          style={{ marginRight: "10px" }}
+        >
           <FacebookIcon style={{ color: "white" }} />
         </a>
-        <a href="http://linkedin.com/walletApp" target="_blank">
+        <a
+          href="http://linkedin.com/walletApp"
+          target="_blank"
+          style={{ marginRight: "10px" }}
+        >
           <LinkedinIcon style={{ color: "white" }} />
         </a>
       </Box>
