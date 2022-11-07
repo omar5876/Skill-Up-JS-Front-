@@ -1,4 +1,11 @@
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
 .App {
+
     width: 100vw;
     text-align: center;
     display: flex;
