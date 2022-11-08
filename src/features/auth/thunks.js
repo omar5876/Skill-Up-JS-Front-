@@ -1,14 +1,12 @@
 import axios from 'axios';
-import { sneakersApi } from '../../../api/sneakersApi';
-import { MyError } from '../../../interface/interfaces';
-import { AppThunk } from '../../store';
+import { walletApi } from '../../../api/walletApi';
 import { setErrorMessage, setUser, startLoadingUser } from '../authSlice';
 
 export const login = (email, password) => {
     return async (dispatch, getState) => {
         try {
             dispatch(startLoadingUser());
-            const { data } = await sneakersApi.post('/auth/login', {
+            const { data } = await walletApi.post('/auth/login', {
                 email,
                 password,
             });
@@ -34,7 +32,7 @@ export const renewUser = () => {
         localStorage.clear();
         try {
             if (token) {
-                const { data } = await sneakersApi.get('/auth/renew');
+                const { data } = await walletApi.get('/auth/renew');
                 const { accessToken, ...userData } = data;
 
                 localStorage.setItem('token', newToken);
