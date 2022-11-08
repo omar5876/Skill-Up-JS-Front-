@@ -1,7 +1,8 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { TextField, Button, Typography, Container } from "@mui/material";
+import { TextField, Container } from "@mui/material";
+import Button from "../../Button/Button";
 
 const UserForm = () => {
   const validationSchema = yup.object({
@@ -12,7 +13,7 @@ const UserForm = () => {
     lastName: yup
       .string("Ingrese su apellido")
       .min(5, "Tu apellido deben tene minimo de 5 caracteres")
-      .required("Tu apelldio es requerido"),
+      .required("Tu apellido es requerido"),
     avatar: yup
       .string("Ingrese su imagen de perfil")
       .email("Ingrese un imagen de perfil")
@@ -91,9 +92,7 @@ const UserForm = () => {
           style={{ marginBottom: "1em" }}
         />
         {/* Aca deberiamos agregar el componente de Image Upload */}
-        <Button color="primary" variant="contained" fullWidth type="submit">
-          Registrarse
-        </Button>
+        <Button text="Registrarse" type="submit" />
       </form>
     </Container>
   );

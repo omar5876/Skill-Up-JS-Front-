@@ -1,12 +1,10 @@
 import React from "react";
 
 import LoginForm from "../Components/Formularios/LoginForm/LoginForm";
-import { Container, Box, Typography } from "@mui/material";
+import { Box, Typography, Button, CardMedia } from "@mui/material";
 import { Link } from "react-router-dom";
 
 import loginWallet from "../assets/login-wallet.jpeg";
-
-import TemplateFormPage from "./TemplateFormPage";
 
 function Login() {
   return (
@@ -17,13 +15,12 @@ function Login() {
         width: "100%",
       }}
     >
-      <Box
-        style={{
-          backgroundImage: `url(${loginWallet})`,
-          height: "100vh",
-          backgroundSize: "cover",
-        }}
-      ></Box>
+      <CardMedia
+        component="img"
+        alt="phone wallet app"
+        sx={{ height: "100vh" }}
+        image={loginWallet}
+      />
       <Box
         style={{
           display: "flex",
@@ -32,12 +29,15 @@ function Login() {
           alignItems: "center",
         }}
       >
-        <Typography variant="book1" style={{ marginBottom: "1em" }}>
-          Ingrese tus datos para iniciar sesion
+        <Typography variant="h5" style={{ marginBottom: "1em" }}>
+          Ingrese sus datos para iniciar sesion
         </Typography>
         <LoginForm />
-        <Typography variant="book1">
-          ¿No tienes cuenta? <Link to="/register">Registrate</Link>
+        <Typography variant="subtitle1">
+          ¿No tienes cuenta?
+          <Button component={Link} to="/register" underline="none">
+            Registrarse
+          </Button>
         </Typography>
       </Box>
     </Box>

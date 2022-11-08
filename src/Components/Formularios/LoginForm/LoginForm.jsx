@@ -1,8 +1,8 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { TextField, Button, Typography, Container } from "@mui/material";
-
+import { TextField, Container } from "@mui/material";
+import Button from "../../Button/Button";
 
 const FormContainer = () => {
   const validationSchema = yup.object({
@@ -53,9 +53,7 @@ const FormContainer = () => {
           helperText={formik.touched.password && formik.errors.password}
           style={{ marginBottom: "1em" }}
         />
-        <Button color="primary" variant="contained" fullWidth type="submit">
-          Ingresa
-        </Button>
+        <Button text="Ingresar" type="submit" />
       </form>
     </Container>
   );

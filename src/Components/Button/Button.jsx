@@ -1,9 +1,10 @@
 import * as React from "react";
 import MaterialButton from "@mui/material/Button";
 
-const Button = ({ text, color, onClick }) => {
+const Button = ({ text, color, onClick, type }) => {
   return (
     <MaterialButton
+      type={type}
       variant="outlined"
       sx={{
         color,
