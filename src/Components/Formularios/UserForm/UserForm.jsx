@@ -1,10 +1,47 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { TextField, Container } from "@mui/material";
+import Button from "../../Button/Button";
 
-import { TextField, Button, Typography, Container } from "@mui/material";
+const UserForm = () => {
+  const validationSchema = yup.object({
+    firstName: yup
+      .string("Ingrese su nombre")
+      .min(5, "Tu nombre debe tener minimo de 5 caracteres")
+      .required("Tu nombre es requerido"),
+    lastName: yup
+      .string("Ingrese su apellido")
+      .min(5, "Tu apellido deben tene minimo de 5 caracteres")
+      .required("Tu apellido es requerido"),
+    avatar: yup
+      .string("Ingrese su imagen de perfil")
+      .email("Ingrese un imagen de perfil")
+      .required("imagen de perfil es requerido"),
+    email: yup
+      .string("Ingrese su email")
+      .email("Ingrese un email valido")
+      .required("Email es requerido"),
+    password: yup
+      .string("Ingrese su nombre contraseña")
+      .min(8, "Las contraseña deben tener minimo de 8 caracteres")
+      .required("Contraseña es requerido"),
+  });
 
-function Form({ formik, validationSchema }) {
+  const formik = useFormik({
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      avatar: "",
+      password: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
+
   return (
     <Container>
       <form onSubmit={formik.handleSubmit}>
@@ -55,12 +92,10 @@ function Form({ formik, validationSchema }) {
           style={{ marginBottom: "1em" }}
         />
         {/* Aca deberiamos agregar el componente de Image Upload */}
-        <Button color="primary" variant="contained" fullWidth type="submit">
-          Registrarse
-        </Button>
+        <Button text="Registrarse" type="submit" />
       </form>
     </Container>
   );
-}
+};
 
-export default Form;
+export default UserForm;

@@ -1,10 +1,32 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { TextField, Container } from "@mui/material";
+import Button from "../../Button/Button";
 
-import { TextField, Button, Typography, Container } from "@mui/material";
+const FormContainer = () => {
+  const validationSchema = yup.object({
+    email: yup
+      .string("Ingrese su email")
+      .email("Ingrese un email valido")
+      .required("Email es requerido"),
+    password: yup
+      .string("Ingrese su nombre contraseña")
+      .min(8, "Las contraseña deben tener minimo de 8 caracteres")
+      .required("Contraseña es requerido"),
+  });
 
-function Form({ formik, validationSchema }) {
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
+
   return (
     <Container>
       <form onSubmit={formik.handleSubmit}>
@@ -31,12 +53,10 @@ function Form({ formik, validationSchema }) {
           helperText={formik.touched.password && formik.errors.password}
           style={{ marginBottom: "1em" }}
         />
-        <Button color="primary" variant="contained" fullWidth type="submit">
-          Ingresa
-        </Button>
+        <Button text="Ingresar" type="submit" />
       </form>
     </Container>
   );
-}
+};
 
-export default Form;
+export default FormContainer;
