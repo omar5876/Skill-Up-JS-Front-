@@ -5,38 +5,44 @@ import { Link } from "react-router-dom";
 
 import loginWallet from "../assets/login-wallet.jpeg";
 
+import LoginForm from "../Components/Formularios/LoginForm/LoginForm";
+import { Box, Typography, Button, CardMedia } from "@mui/material";
+import { Link } from "react-router-dom";
+
+import loginWallet from "../assets/login-wallet.jpeg";
+
 function Login() {
   return (
     <Box
-      className="login-page-container"
       style={{
         display: "grid",
         gridTemplateColumns: "1fr 1fr",
-        placeContent: "center",
+        width: "100%",
       }}
     >
-      <Box
-        style={{
-          backgroundImage: `url(${loginWallet})`,
-          height: "100vh",
-          backgroundSize: "cover",
-        }}
-      ></Box>
+      <CardMedia
+        component="img"
+        alt="phone wallet app"
+        sx={{ height: "100vh" }}
+        image={loginWallet}
+      />
       <Box
         style={{
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-evenly",
           alignItems: "center",
-          height: "100vh",
         }}
       >
-        <Typography variant="book1" style={{ marginBottom: "1em" }}>
-          Ingrese tus datos para iniciar sesion
+        <Typography variant="h5" style={{ marginBottom: "1em" }}>
+          Ingrese sus datos para iniciar sesion
         </Typography>
-        <Formulario />
-        <Typography variant="book1">
-          No tienes cuenta?<Link to="/register">Registrate</Link>
+        <LoginForm />
+        <Typography variant="subtitle1">
+          ¿No tienes cuenta?
+          <Button component={Link} to="/register" underline="none">
+            Registrarse
+          </Button>
         </Typography>
       </Box>
     </Box>

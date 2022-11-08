@@ -13,7 +13,7 @@ function AppRouter() {
   return (
     <Router>
       <Routes>
-        <Route path="login" element={<Login />} />{" "}
+        <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="/" element={<Home />} />
         <Route path="movimientos" element={<Movimientos />} />{" "}
