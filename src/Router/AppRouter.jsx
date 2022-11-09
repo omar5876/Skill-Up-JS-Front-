@@ -8,10 +8,12 @@ import Movimientos from "../Pages/Movimientos";
 import Balance from "../Pages/Balance";
 import EnvioDinero from "../Pages/EnvioDinero";
 import Footer from "../Components/Global/Footer/Footer";
+import Header from "../Components/Global/Header/Header";
 
 function AppRouter() {
   return (
     <Router>
+      <Header />
       <Routes>
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
