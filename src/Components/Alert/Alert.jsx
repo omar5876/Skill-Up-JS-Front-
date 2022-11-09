@@ -23,3 +23,26 @@ export function alertInfo(titulo, mensaje) {
     text: mensaje,
   });
 }
+
+export async function alertWarning(titulo) {
+  let response = false;
+  await Swal.fire({
+    title: "¿Estás seguro?",
+    html: `<strong>${titulo}</strong> se borrará definitivamente`,
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Si, eliminar!",
+    cancelButtonText: "Cancelar",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      response = true;
+    }
+  });
+  return response;
+}
+
+export function closeAlert() {
+  Swal.close();
+}
