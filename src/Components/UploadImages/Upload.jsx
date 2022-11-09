@@ -35,12 +35,12 @@ function Upload() {
           <input
             accept="image/*"
             style={{ display: "none" }}
-            id="raised-button-file"
+            id="upload-button"
             multiple
             type="file"
             onChange={(e) => onFileChange(e)}
           />
-          <label htmlFor="raised-button-file">
+          <label htmlFor="upload-button">
             <Button variant="raised" component="span" type="submit">
               Upload
             </Button>
