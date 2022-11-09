@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import {
   Paper,
   Button,
@@ -12,6 +12,8 @@ import {
   Box,
 } from "@mui/material";
 
+import axios from 'axios';
+
 import TableDashboard from "../Components/Dashboard/Dashboard";
 
 function Movimientos() {
@@ -19,10 +21,29 @@ function Movimientos() {
     {
       concepto: "Hola",
       monto: 12,
+      fecha: "27/09/22",
       tipo: "Egreso",
-      Caategoria: "Restaurante",
+      categoria: "Restaurante",
     },
+    {
+      concepto: "Segunda accion",
+      monto: 19,
+      fecha: "29/09/22",
+      tipo: "Egreso",
+      categoria: "Restaurante",
+    }
   ]);
+
+  const getTransacciones = (e) => {
+      axios.get("http://localhost:3000/transactions").then((response) => {
+        setData(response.data);
+        console.log(data);
+      });
+    };
+
+    useEffect(() => {
+      getTransacciones();
+    }, []);
 
   return (
     <Box
