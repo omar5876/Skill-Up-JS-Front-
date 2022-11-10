@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Typography } from "@mui/material";
-
 import axios from "axios";
-
-import TransactionsDashboard from "../Components/Dashboard/TransactionsDashboard/Dashboard";
-import UsersDashboard from "../Components/Dashboard/UsersDashboard/Dashboard";
-import CategoriesDashboard from "../Components/Dashboard/CategoriesDashboard/Dashboard";
 
 function Movimientos() {
   const [data, setData] = useState([]);
@@ -30,12 +25,7 @@ function Movimientos() {
 
   return (
     <>
-      <Typography variant="button">Transacciones Admin:</Typography>
-      <TransactionsDashboard data={data} />
-      <Typography variant="button">Usuarios Admin:</Typography>
-      <UsersDashboard data={data} />
-      <Typography variant="button">Categorias Admin:</Typography>
-      <CategoriesDashboard data={data} />
+      <Typography variant="button">Movimientos usuario:</Typography>
     </>
   );
 }

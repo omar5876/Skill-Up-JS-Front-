@@ -34,6 +34,8 @@ function UsersDashboard({ data }) {
           display: "flex",
           flexDirection: "column",
           width: "80vw",
+          margin: "auto",
+          marginTop: "10px",
         }}
       >
         <TableContainer component={Paper}>

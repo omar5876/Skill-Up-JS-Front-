@@ -23,6 +23,8 @@ function TransactionsDashboard({ data }) {
           display: "flex",
           flexDirection: "column",
           width: "80vw",
+          margin: "auto",
+          marginTop: "10px",
         }}
       >
         <TableContainer component={Paper}>
@@ -42,11 +44,6 @@ function TransactionsDashboard({ data }) {
               {data.map((item, index) => (
                 <TableCard item={item} key={index} />
               ))}
-              <TableRow>
-                <TableCell>Total:</TableCell>
-                <TableCell align="right">Suma del total</TableCell>
-                <TableCell align="right"></TableCell>
-              </TableRow>
             </TableBody>
           </Table>
         </TableContainer>
