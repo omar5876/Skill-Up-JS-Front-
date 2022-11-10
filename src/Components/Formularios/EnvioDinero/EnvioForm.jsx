@@ -7,9 +7,9 @@ import Button from "../../Button/Button";
 const EnvioForm = () => {
   const validationSchema = yup.object({
     description: yup
-      .string("Ingrese su nombre")
-      .min(5, "Tu nombre debe tener minimo de 5 caracteres")
-      .required("Tu nombre es requerido"),
+      .string("Ingrese concepto")
+      .min(5, "El concepto debe tener minimo de 5 caracteres")
+      .required("Concepto es requerido"),
     amount: yup
       .number()
       .required("Debe ingresar un monto")
@@ -28,7 +28,7 @@ const EnvioForm = () => {
     initialValues: {
       description: "",
       amount: "",
-      user: ""
+      user: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -43,7 +43,7 @@ const EnvioForm = () => {
           fullWidth
           id="description"
           name="description"
-          label="Descripcion"
+          label="Concepto"
           value={formik.values.description}
           onChange={formik.handleChange}
           error={
@@ -56,7 +56,8 @@ const EnvioForm = () => {
           fullWidth
           id="amount"
           name="amount"
-          label="Amount"
+          label="Monto"
+          type="number"
           value={formik.values.amount}
           onChange={formik.handleChange}
           error={formik.touched.amount && Boolean(formik.errors.amount)}
@@ -67,7 +68,7 @@ const EnvioForm = () => {
           fullWidth
           id="user"
           name="user"
-          label="User"
+          label="Usuario"
           value={formik.values.user}
           onChange={formik.handleChange}
           error={formik.touched.user && Boolean(formik.errors.user)}

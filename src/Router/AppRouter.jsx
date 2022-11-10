@@ -1,28 +1,35 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import WalletRouter from "./WalletRouter";
+import PrivateRoute from "./PrivateRoute";
 import Login from "../Pages/Login";
-import Home from "../Pages/Home";
 import Register from "../Pages/Register";
-import CargaSaldo from "../Pages/CargaSaldo";
-import Movimientos from "../Pages/Movimientos";
-import Balance from "../Pages/Balance";
-import EnvioDinero from "../Pages/EnvioDinero";
-import Footer from "../Components/Global/Footer/Footer";
+import AdminRouter from "./AdminRouter";
 
 function AppRouter() {
   return (
-    <Router>
-      <Routes>
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
-        <Route path="/" element={<Home />} />
-        <Route path="movimientos" element={<Movimientos />} />{" "}
-        <Route path="cargar-saldo" element={<CargaSaldo />} />
-        <Route path="/balance" element={<Balance />} />
-        <Route path="/enviar-dinero" element={<EnvioDinero />} />
-      </Routes>
-      <Footer />
-    </Router>
+    <Routes>
+      <Route exact index element={<Login />}></Route>
+      <Route exact path="register" element={<Register />}></Route>
+      <Route
+        path="admin/*"
+        element={
+          <PrivateRoute isAdminRoute>
+            <AdminRouter />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="wallet/*"
+        element={
+          <PrivateRoute>
+            <WalletRouter />
+          </PrivateRoute>
+        }
+      />
+      <Route path="*" element={<div>Pagina no encontrada </div>} />
+    </Routes>
   );
 }
 
