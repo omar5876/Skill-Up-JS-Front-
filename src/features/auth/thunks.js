@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { walletApi } from '../../../api/walletApi';
-import { setErrorMessage, setUser, startLoadingUser } from '../authSlice';
+import { walletApi } from '../../api/walletApi';
+import { setErrorMessage, setUser, startLoadingUser } from './authSlice';
 
 export const login = (email, password) => {
     return async (dispatch, getState) => {
