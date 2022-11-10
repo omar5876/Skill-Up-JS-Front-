@@ -7,7 +7,7 @@ import Register from "../Pages/Register";
 
 const AuthRouter = () => {
 
-    // Aca mostramos solo el login y el register, hasta que el usuario se autentique
+  // Aca mostramos solo el login y el register, hasta que el usuario se autentique
 
   return (
     <Routes>
