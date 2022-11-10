@@ -10,7 +10,7 @@ export const login = (email, password) => {
                 email,
                 password,
             });
-            localStorage.setItem('token', data.body.accessToken);
+            localStorage.setItem('access_token', data.body.accessToken);
             dispatch(setUser(data.body));
         } catch (error) {
             if (axios.isAxiosError(error)) {
@@ -28,17 +28,13 @@ export const login = (email, password) => {
 
 export const renewUser = () => {
     return async (dispatch) => {
-        const token = localStorage.getItem('token');
-        localStorage.clear();
         try {
-            if (token) {
-                const { data } = await walletApi.get('/auth/renew');
-                const { accessToken, ...userData } = data;
+            const { data } = await walletApi.get('/auth/renew');
+            const { accessToken, ...userData } = data;
 
-                localStorage.setItem('token', newToken);
+            localStorage.setItem('token', accessToken);
 
-                dispatch(setUser(userData));
-            }
+            dispatch(setUser(userData));
         } catch (error) {
             console.log(error);
         }
