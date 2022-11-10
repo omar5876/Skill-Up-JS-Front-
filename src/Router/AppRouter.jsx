@@ -11,7 +11,7 @@ import { renewUser } from '../features/auth/thunks';
 
 function AppRouter() {
     const dispatch = useDispatch();
-    const { id } = useSelector((state) => state.auth.user);
+    const { uid } = useSelector((state) => state.auth);
 
     useEffect(() => {
         dispatch(renewUser());
@@ -26,7 +26,7 @@ function AppRouter() {
                 <Route
                     path="/*"
                     element={
-                        <PrivateRoute isAuth={!!id}>
+                        <PrivateRoute isAuth={!!uid}>
                             <WalletRouter />
                         </PrivateRoute>
                     }
