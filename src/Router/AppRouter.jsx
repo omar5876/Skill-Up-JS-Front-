@@ -1,25 +1,29 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Login from "../Pages/Login";
-import Home from "../Pages/Home";
-import Register from "../Pages/Register";
-import CargaSaldo from "../Pages/CargaSaldo";
-import Movimientos from "../Pages/Movimientos";
-import Balance from "../Pages/Balance";
-import EnvioDinero from "../Pages/EnvioDinero";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Footer from "../Components/Global/Footer/Footer";
+import Header from "../Components/Global/Header/Header";
+import WalletRouter from "./WalletRouter";
+import PrivateRoute from "./PrivateRoute";
+import AuthRouter from "./AuthRouter";
+import Home from "../Pages/Home";
 
 function AppRouter() {
+  // Le agrego exact path auth/* para poder bloquear todo lo que vaya adelante de eso.
+
   return (
     <Router>
+      <Header />
       <Routes>
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
+        <Route exact path="auth/*" element={<AuthRouter />} />
         <Route path="/" element={<Home />} />
-        <Route path="movimientos" element={<Movimientos />} />{" "}
-        <Route path="cargar-saldo" element={<CargaSaldo />} />
-        <Route path="/balance" element={<Balance />} />
-        <Route path="/enviar-dinero" element={<EnvioDinero />} />
+        <Route
+          path="/*"
+          element={
+            <PrivateRoute>
+              <WalletRouter />
+            </PrivateRoute>
+          }
+        />
       </Routes>
       <Footer />
     </Router>
