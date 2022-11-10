@@ -1,7 +1,7 @@
 const routes = [
   {
     name: "home",
-    path: "/movimientos",
+    path: "/",
   },
   {
     name: "Cargar Saldo",
