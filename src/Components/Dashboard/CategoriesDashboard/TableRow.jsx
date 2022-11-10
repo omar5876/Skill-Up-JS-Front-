@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-import { Button, TableFooter, TableCell, TableRow } from "@mui/material";
+import { Button, TableCell, TableRow } from "@mui/material";
 
 import { Link } from "react-router-dom";
 
-function RowTable({ item }) {
+function Rows({ item }) {
   const [editarSaldo, setEditarSaldo] = useState();
 
   const onPressEdit = () => {
@@ -16,14 +16,13 @@ function RowTable({ item }) {
       <TableRow
         key={item.id}
         sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+        hover
       >
-        <TableCell component="th" scope="row">
+        <TableCell align="right">{item.id}</TableCell>
+        <TableCell align="right">{item.name}</TableCell>
+        <TableCell align="right" component="th" scope="row">
           {item.description}
         </TableCell>
-        <TableCell align="right">{item.amount}</TableCell>
-        <TableCell align="right">{item.createdAt}</TableCell>
-        <TableCell align="right">{item.userId}</TableCell>
-        <TableCell align="right">{item.categoryId}</TableCell>
         <TableCell align="right">
           <Button>
             <Link to={`/editar/$item.id`} onClick={onPressEdit}>
@@ -45,4 +44,4 @@ function RowTable({ item }) {
   );
 }
 
-export default RowTable;
+export default Rows;
