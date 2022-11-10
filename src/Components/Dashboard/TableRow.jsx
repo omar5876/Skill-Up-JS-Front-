@@ -18,12 +18,12 @@ function RowTable({ item }) {
         sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
       >
         <TableCell component="th" scope="row">
-          {item.concepto}
+          {item.description}
         </TableCell>
-        <TableCell align="right">{item.monto}</TableCell>
-        <TableCell align="right">{item.fecha}</TableCell>
-        <TableCell align="right">{item.tipo}</TableCell>
-        <TableCell align="right">{item.categoria}</TableCell>
+        <TableCell align="right">{item.amount}</TableCell>
+        <TableCell align="right">{item.createdAt}</TableCell>
+        <TableCell align="right">{item.userId}</TableCell>
+        <TableCell align="right">{item.categoryId}</TableCell>
         <TableCell align="right">
           <Button>
             <Link to={`/editar/$item.id`} onClick={onPressEdit}>

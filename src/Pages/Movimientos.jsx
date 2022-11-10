@@ -17,33 +17,33 @@ import axios from 'axios';
 import TableDashboard from "../Components/Dashboard/Dashboard";
 
 function Movimientos() {
-  const [data, setData] = useState([
-    {
-      concepto: "Hola",
-      monto: 12,
-      fecha: "27/09/22",
-      tipo: "Egreso",
-      categoria: "Restaurante",
-    },
-    {
-      concepto: "Segunda accion",
-      monto: 19,
-      fecha: "29/09/22",
-      tipo: "Egreso",
-      categoria: "Restaurante",
-    }
+  const [data, setData] = useState([  
   ]);
+
+
 
   const getTransacciones = (e) => {
       axios.get("http://localhost:3000/transactions").then((response) => {
-        setData(response.data);
-        console.log(data);
+        setData(response.data.body);      
       });
     };
 
     useEffect(() => {
-      getTransacciones();
+      getTransacciones(),
+      filterIngresos () 
+
     }, []);
+  
+  const [ingresos, setIngresos] = useState([])
+  const filterIngresos = () => {
+      const listado= 
+      data.filter(
+        (ingreso) => ingreso.categoryId === 11
+      );      
+    setIngresos(listado);
+    console.log(ingresos)
+      return listado;
+    };
 
   return (
     <Box
@@ -61,7 +61,7 @@ function Movimientos() {
               <TableCell>Concepto</TableCell>
               <TableCell align="right">Monto</TableCell>
               <TableCell align="right">Fecha</TableCell>
-              <TableCell align="right">Tipo</TableCell>
+              <TableCell align="right">User</TableCell>
               <TableCell align="right">Categoria</TableCell>
               <TableCell align="right">Editar</TableCell>
               <TableCell align="right">Borrar</TableCell>
