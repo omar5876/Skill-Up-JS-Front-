@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Button, TableFooter, TableCell, TableRow } from "@mui/material";
+import { Button, TableCell, TableRow } from "@mui/material";
 
 import { Link } from "react-router-dom";
 
@@ -16,6 +16,7 @@ function RowTable({ item }) {
       <TableRow
         key={item.id}
         sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+        hover
       >
         <TableCell component="th" scope="row">
           {item.description}

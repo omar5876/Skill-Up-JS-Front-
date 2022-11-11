@@ -1,5 +1,5 @@
 import React from "react";
-import Upload from "../Components/UploadImages/Upload";
+import Upload from "../../Components/UploadImages/Upload";
 
 function Home() {
   return (
