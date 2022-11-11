@@ -4,11 +4,14 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { CardActionArea, CardActions } from "@mui/material";
 import Button from "../../Components/Button/Button";
+import { Link } from "react-router-dom";
 
 // Faltan traer datos con REDUX
 const campos = [{ name: "Nombre" }, { name: "Apellido" }, { name: "Email" }];
 
 function Profile() {
+  // const userData = useSelector(store => store.DATOSDELUSUARIO)
+
   return (
     <Card>
       {/* Avatar */}
@@ -24,8 +27,10 @@ function Profile() {
         </CardContent>
       </CardActionArea>
       <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-        <Button text="Editar" />
-        <Button text="Eliminar" />
+        <Link to={`user/edit/${USERDATA.ID}`}>
+          <Button text="Editar datos" />
+        </Link>
+        <Button text="Eliminar usuario" />
       </CardActions>
     </Card>
   );
