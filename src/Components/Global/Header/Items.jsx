@@ -1,23 +1,23 @@
 const routes = [
   {
     name: "home",
-    path: "/",
+    path: "/wallet",
   },
   {
     name: "Cargar Saldo",
-    path: "/cargar-saldo",
+    path: "wallet/cargar-saldo",
   },
   {
     name: "Balance",
-    path: "/balance",
+    path: "wallet/balance",
   },
   {
     name: "Enviar Dinero",
-    path: "/enviar-dinero",
+    path: "wallet/enviar-dinero",
   },
   {
     name: "Mi Perfil",
-    path: "/mi-perfil",
+    path: "wallet/mi-perfil",
   },
   {
     name: "Salir",

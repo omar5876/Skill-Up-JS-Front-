@@ -1,14 +1,9 @@
 import React from 'react';
-import { Routes, Route, Link, Navigate } from 'react-router-dom';
-import Login from '../Pages/Login';
-import Home from '../Pages/Home';
-import Register from '../Pages/Register';
-import CargaSaldo from '../Pages/CargaSaldo';
-import Movimientos from '../Pages/Movimientos';
-import Balance from '../Pages/Balance';
-import EnvioDinero from '../Pages/EnvioDinero';
-import Footer from '../Components/Global/Footer/Footer';
-import Header from '../Components/Global/Header/Header';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import CargaSaldo from '../Pages/Wallet/CargaSaldo';
+import Movimientos from '../Pages/Wallet/Movimientos';
+import Balance from '../Pages/Wallet/Balance';
+import EnvioDinero from '../Pages/Wallet/EnvioDinero';
 
 function WalletRouter() {
     return (

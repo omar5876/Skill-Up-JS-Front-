@@ -8,38 +8,44 @@ import PrivateRoute from './PrivateRoute';
 import AuthRouter from './AuthRouter';
 import { useDispatch, useSelector } from 'react-redux';
 import { renewUser } from '../features/auth/thunks';
+import AdminRoute from './AdminRoute';
+import AdminRouter from './AdminRouter';
 
 function AppRouter() {
     const dispatch = useDispatch();
-    const { uid } = useSelector((state) => state.auth);
+    const { uid, role } = useSelector((state) => state.auth);
 
     useEffect(() => {
         dispatch(renewUser());
     }, [dispatch]);
 
     return (
-        <Router>
-            <Header />
-            <Routes>
-                <Route
-                    path="/auth/*"
-                    element={
-                        <PublicRoutes isAuth={!!uid}>
-                            <AuthRouter />
-                        </PublicRoutes>
-                    }
-                />
-                <Route
-                    path="/*"
-                    element={
-                        <PrivateRoute isAuth={!!uid}>
-                            <WalletRouter />
-                        </PrivateRoute>
-                    }
-                />
-            </Routes>
-            <Footer />
-        </Router>
+        <Routes>
+            <Route
+                path="/auth/*"
+                element={
+                    <PublicRoutes isAuth={!!uid}>
+                        <AuthRouter />
+                    </PublicRoutes>
+                }
+            />
+            <Route
+                path="/admin/*"
+                element={
+                    <AdminRoute isAdmin={role}>
+                        <AdminRouter />
+                    </AdminRoute>
+                }
+            />
+            <Route
+                path="/wallet/*"
+                element={
+                    <PrivateRoute isAuth={!!uid}>
+                        <WalletRouter />
+                    </PrivateRoute>
+                }
+            />
+        </Routes>
     );
 }
 
