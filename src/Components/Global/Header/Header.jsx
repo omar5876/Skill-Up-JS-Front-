@@ -9,24 +9,22 @@ import {
 } from "@mui/material";
 
 import items from "./Items";
-
 import { Link } from "react-router-dom";
-
-import Logo from "../../../assets/react.svg";
+import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 
 console.log(items);
 
 function Header() {
   return (
-    <AppBar position="static" color="default" style={{ padding: '10px'}}>
+    <AppBar position="static" color="default" style={{ padding: "10px" }}>
       <Container maxWidth="xl">
         <Toolbar
           disableGutters
           sx={{ display: "flex", justifyContent: "space-between" }}
         >
           <Box>
-            <Link to="/movimientos">
-              <img src={Logo} alt="Logo de la App" style={{ height: "50px" }} />
+            <Link to="/wallet">
+              <AccountBalanceIcon fontSize="large" />
             </Link>
           </Box>
           <Box>
