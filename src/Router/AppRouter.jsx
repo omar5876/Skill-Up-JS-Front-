@@ -38,7 +38,11 @@ function AppRouter() {
                 }
             />
             <Route
+<<<<<<< HEAD
                 path="/wallet/*"
+=======
+                path="/*"
+>>>>>>> e3f0cde6858abc0162aed76d97095b3feb2a4259
                 element={
                     <PrivateRoute isAuth={!!uid}>
                         <WalletRouter />
