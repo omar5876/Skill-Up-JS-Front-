@@ -16,18 +16,18 @@ function AppRouter() {
         exact
         index
         element={
-          //<PublicRoutes isAuth={isAuth}>
-          <Login />
-          //</PublicRoutes>
+          <PublicRoutes isAuth={isAuth}>
+            <Login />
+          </PublicRoutes>
         }
       ></Route>
       <Route
         exact
         path="register"
         element={
-          //<PublicRoutes>
-          <Register />
-          //</PublicRoutes>
+          <PublicRoutes>
+            <Register />
+          </PublicRoutes>
         }
       ></Route>
       <Route
@@ -41,9 +41,9 @@ function AppRouter() {
       <Route
         path="wallet/*"
         element={
-          //<PrivateRoute>
-          <WalletRouter />
-          //</PrivateRoute>
+          <PrivateRoute>
+            <WalletRouter />
+          </PrivateRoute>
         }
       />
       <Route path="*" element={<div>Pagina no encontrada </div>} />
