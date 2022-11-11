@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Footer from '../Components/Global/Footer/Footer';
 import Header from '../Components/Global/Header/Header';
 import WalletRouter from './WalletRouter';
+import PublicRoutes from './PublicRoutes';
 import PrivateRoute from './PrivateRoute';
 import AuthRouter from './AuthRouter';
 import Home from '../Pages/Home';
@@ -15,14 +16,20 @@ function AppRouter() {
 
     useEffect(() => {
         dispatch(renewUser());
-    }, []);
+    }, [dispatch]);
 
     return (
         <Router>
             <Header />
             <Routes>
-                <Route exact path="auth/*" element={<AuthRouter />} />
-                <Route path="/" element={<Home />} />
+                <Route
+                    path="/auth/*"
+                    element={
+                        <PublicRoutes isAuth={!!uid}>
+                            <AuthRouter />
+                        </PublicRoutes>
+                    }
+                />
                 <Route
                     path="/*"
                     element={
