@@ -1,54 +1,56 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-import WalletRouter from "./WalletRouter";
-import PrivateRoute from "./PrivateRoute";
-import PublicRoutes from "./PublicRoutes";
-import Login from "../Pages/Login";
-import Register from "../Pages/Register";
-import AdminRouter from "./AdminRouter";
+import React, { useEffect } from 'react';
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Navigate,
+} from 'react-router-dom';
+import WalletRouter from './WalletRouter';
+import PublicRoutes from './PublicRoutes';
+import PrivateRoute from './PrivateRoute';
+import AuthRouter from './AuthRouter';
+import { useDispatch, useSelector } from 'react-redux';
+import { renewUser } from '../features/auth/thunks';
+import AdminRoute from './AdminRoute';
+import AdminRouter from './AdminRouter';
 
 function AppRouter() {
-  const [isAuth, setIsAuth] = useState(true);
-  return (
-    <Routes>
-      <Route
-        exact
-        index
-        element={
-          <PublicRoutes isAuth={isAuth}>
-            <Login />
-          </PublicRoutes>
-        }
-      ></Route>
-      <Route
-        exact
-        path="register"
-        element={
-          <PublicRoutes>
-            <Register />
-          </PublicRoutes>
-        }
-      ></Route>
-      <Route
-        path="admin/*"
-        element={
-          <PrivateRoute isAdminRoute>
-            <AdminRouter />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="wallet/*"
-        element={
-          <PrivateRoute>
-            <WalletRouter />
-          </PrivateRoute>
-        }
-      />
-      <Route path="*" element={<div>Pagina no encontrada </div>} />
-    </Routes>
-  );
+    const dispatch = useDispatch();
+    const { uid, role } = useSelector((state) => state.auth);
+
+    useEffect(() => {
+        dispatch(renewUser());
+    }, [dispatch]);
+
+    return (
+        <Routes>
+            <Route
+                path="/auth/*"
+                element={
+                    <PublicRoutes isAuth={!!uid}>
+                        <AuthRouter />
+                    </PublicRoutes>
+                }
+            />
+            <Route
+                path="/admin/*"
+                element={
+                    <AdminRoute isAdmin={role}>
+                        <AdminRouter />
+                    </AdminRoute>
+                }
+            />
+            <Route
+                path="/wallet/*"
+                element={
+                    <PrivateRoute isAuth={!!uid}>
+                        <WalletRouter />
+                    </PrivateRoute>
+                }
+            />
+            <Route path="/*" element={<Navigate to="/auth/login" />} />
+        </Routes>
+    );
 }
 
 export default AppRouter;

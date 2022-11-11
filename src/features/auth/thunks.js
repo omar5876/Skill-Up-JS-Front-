@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { walletApi } from '../../../api/walletApi';
-import { setErrorMessage, setUser, startLoadingUser } from '../authSlice';
+import { walletApi } from '../../api/walletApi';
+import { setErrorMessage, setUser, startLoadingUser } from './authSlice';
 
 export const login = (email, password) => {
     return async (dispatch, getState) => {
@@ -10,8 +10,8 @@ export const login = (email, password) => {
                 email,
                 password,
             });
-            localStorage.setItem('token', data.body.accessToken);
-            dispatch(setUser(data.body));
+            localStorage.setItem('access_token', data.body.accessToken);
+            dispatch(setUser(data.body.user));
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 if (error) {
@@ -28,17 +28,13 @@ export const login = (email, password) => {
 
 export const renewUser = () => {
     return async (dispatch) => {
-        const token = localStorage.getItem('token');
-        localStorage.clear();
         try {
-            if (token) {
-                const { data } = await walletApi.get('/auth/renew');
-                const { accessToken, ...userData } = data;
+            const { data } = await walletApi.get('/auth/renew');
+            const { user, accessToken } = data.body;
 
-                localStorage.setItem('token', newToken);
+            localStorage.setItem('access_token', accessToken);
 
-                dispatch(setUser(userData));
-            }
+            dispatch(setUser(user));
         } catch (error) {
             console.log(error);
         }

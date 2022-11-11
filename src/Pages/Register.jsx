@@ -35,7 +35,7 @@ function Register() {
         <UserForm />
         <Typography variant="subtitle1">
           ¿Ya tienes cuenta?
-          <Button component={Link} to="/" underline="none">
+          <Button component={Link} to="/auth/login" underline="none">
             Login
           </Button>
         </Typography>

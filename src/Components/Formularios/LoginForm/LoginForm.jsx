@@ -3,8 +3,11 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { TextField, Container } from "@mui/material";
 import Button from "../../Button/Button";
+import { useDispatch } from "react-redux";
+import { login } from "../../../features/auth/thunks";
 
 const FormContainer = () => {
+  const dispatch = useDispatch();
   const validationSchema = yup.object({
     email: yup
       .string("Ingrese su email")
@@ -22,8 +25,8 @@ const FormContainer = () => {
       password: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: ({ email, password }) => {
+      dispatch(login(email, password));
     },
   });
 
