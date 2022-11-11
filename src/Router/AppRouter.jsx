@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Footer from '../Components/Global/Footer/Footer';
@@ -21,8 +22,12 @@ function AppRouter() {
         <Router>
             <Header />
             <Routes>
+                            <PublicRoutes isAuth={isAuth}>
+              <Routes>
                 <Route exact path="auth/*" element={<AuthRouter />} />
                 <Route path="/" element={<Home />} />
+              </Routes>
+            </PublicRoutes>
                 <Route
                     path="/*"
                     element={
