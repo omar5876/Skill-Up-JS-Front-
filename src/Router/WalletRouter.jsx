@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, Navigate } from 'react-router-dom';
 import Login from '../Pages/Login';
 import Home from '../Pages/Home';
 import Register from '../Pages/Register';
@@ -16,11 +16,8 @@ function WalletRouter() {
             <Route path="movimientos" element={<Movimientos />} />{' '}
             <Route path="cargar-saldo" element={<CargaSaldo />} />
             <Route path="balance" element={<Balance />} />
-            <Route
-            // isAuth={user && & user.role.includes("admin")}
-            >
-                <Route path="enviar-dinero" element={<EnvioDinero />} />
-            </Route>
+            <Route path="enviar-dinero" element={<EnvioDinero />} />
+            <Route path="*" element={<Navigate to="balance" />} />
         </Routes>
     );
 }
