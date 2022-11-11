@@ -29,7 +29,14 @@ const FormContainer = () => {
 
   return (
     <Container>
-      <form onSubmit={formik.handleSubmit}>
+      <form
+        onSubmit={formik.handleSubmit}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
         <TextField
           fullWidth
           id="email"

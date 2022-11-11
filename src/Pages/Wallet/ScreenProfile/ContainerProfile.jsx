@@ -2,10 +2,12 @@ import { Box, Container, Typography } from "@mui/material";
 import React from "react";
 import Profile from "./Profile";
 
-export const ContainerProfile = () => {
+const ContainerProfile = () => {
   return (
     <>
-      <Box>
+      <Box
+        sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+      >
         <Typography gutterBottom variant="h2" component="div">
           Mi perfil
         </Typography>
@@ -14,3 +16,5 @@ export const ContainerProfile = () => {
     </>
   );
 };
+
+export default ContainerProfile;

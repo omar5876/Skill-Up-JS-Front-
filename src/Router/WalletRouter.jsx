@@ -5,6 +5,7 @@ import Movimientos from "../Pages/Wallet/Movimientos";
 import Balance from "../Pages/Wallet/Balance";
 import EnvioDinero from "../Pages/Wallet/EnvioDinero";
 import Home from "../Pages/Wallet/Home";
+import ContainerProfile from "../Pages/Wallet/ScreenProfile/ContainerProfile";
 
 function WalletRouter() {
   // Aca debemos recibir el user y el role
@@ -18,6 +19,8 @@ function WalletRouter() {
       <Route
       // isAuth={user && & user.role.includes("admin")}
       >
+        <Route path="enviar-dinero" element={<EnvioDinero />} />
+        <Route path="mi-perfil" element={<ContainerProfile />} />
         <Route path="enviar-dinero" element={<EnvioDinero />} />
       </Route>
     </Routes>
