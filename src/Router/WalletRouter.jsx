@@ -1,28 +1,24 @@
 import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
-import Login from "../Pages/Login";
-import Home from "../Pages/Home";
-import Register from "../Pages/Register";
-import CargaSaldo from "../Pages/CargaSaldo";
-import Movimientos from "../Pages/Movimientos";
-import Balance from "../Pages/Balance";
-import EnvioDinero from "../Pages/EnvioDinero";
-import Footer from "../Components/Global/Footer/Footer";
-import Header from "../Components/Global/Header/Header";
+import { Routes, Route } from "react-router-dom";
+import CargaSaldo from "../Pages/Wallet/CargaSaldo";
+import Movimientos from "../Pages/Wallet/Movimientos";
+import Balance from "../Pages/Wallet/Balance";
+import EnvioDinero from "../Pages/Wallet/EnvioDinero";
+import Home from "../Pages/Wallet/Home";
 
 function WalletRouter() {
-
   // Aca debemos recibir el user y el role
 
   return (
     <Routes>
-      <Route path="/movimientos" element={<Movimientos />} />{" "}
-      <Route path="/cargar-saldo" element={<CargaSaldo />} />
-      <Route path="/balance" element={<Balance />} />
+      <Route index element={<Home />} />
+      <Route path="movimientos" element={<Movimientos />} />
+      <Route path="cargar-saldo" element={<CargaSaldo />} />
+      <Route path="balance" element={<Balance />} />
       <Route
       // isAuth={user && & user.role.includes("admin")}
       >
-        <Route path="/enviar-dinero" element={<EnvioDinero />} />
+        <Route path="enviar-dinero" element={<EnvioDinero />} />
       </Route>
     </Routes>
   );
