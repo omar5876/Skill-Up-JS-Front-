@@ -1,5 +1,10 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Navigate,
+} from 'react-router-dom';
 import WalletRouter from './WalletRouter';
 import PublicRoutes from './PublicRoutes';
 import PrivateRoute from './PrivateRoute';
@@ -43,6 +48,7 @@ function AppRouter() {
                     </PrivateRoute>
                 }
             />
+            <Route path="/*" element={<Navigate to="/auth/login" />} />
         </Routes>
     );
 }
