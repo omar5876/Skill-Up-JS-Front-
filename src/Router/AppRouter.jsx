@@ -6,7 +6,6 @@ import WalletRouter from './WalletRouter';
 import PublicRoutes from './PublicRoutes';
 import PrivateRoute from './PrivateRoute';
 import AuthRouter from './AuthRouter';
-import Home from '../Pages/Home';
 import { useDispatch, useSelector } from 'react-redux';
 import { renewUser } from '../features/auth/thunks';
 
