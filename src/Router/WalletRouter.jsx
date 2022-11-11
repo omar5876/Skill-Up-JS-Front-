@@ -8,7 +8,7 @@ import EnvioDinero from '../Pages/Wallet/EnvioDinero';
 function WalletRouter() {
     return (
         <Routes>
-            <Route path="movimientos" element={<Movimientos />} />{' '}
+            <Route path="movimientos" element={<Movimientos />} />
             <Route path="cargar-saldo" element={<CargaSaldo />} />
             <Route path="balance" element={<Balance />} />
             <Route path="enviar-dinero" element={<EnvioDinero />} />

@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Footer from '../Components/Global/Footer/Footer';
-import Header from '../Components/Global/Header/Header';
 import WalletRouter from './WalletRouter';
 import PublicRoutes from './PublicRoutes';
 import PrivateRoute from './PrivateRoute';
