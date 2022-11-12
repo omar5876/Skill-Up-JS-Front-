@@ -28,6 +28,8 @@ export const authSlice = createSlice({
             state.role = '';
             state.uid = '';
             state.user = '';
+            state.errorMessage = '';
+            state.isLoading = false;
         },
     },
 });

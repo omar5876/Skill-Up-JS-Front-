@@ -12,7 +12,6 @@ import {
   ListItemText,
   Divider,
 } from "@mui/material";
-
 import items from "./Items";
 import { Link } from "react-router-dom";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
@@ -20,9 +19,18 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import Button from "../../Button/Button";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
+import { useDispatch, useSelector } from "react-redux";
+import { startLogout } from "../../../features/auth/thunks";
 
 function Header() {
+  const dispatch = useDispatch();
+  const { role } = useSelector((state) => state.auth);
+
   const [toggle, toggleDrawer] = useState(false);
+
+  const handleLogout = () => {
+    dispatch(startLogout());
+  };
 
   return (
     <>
@@ -30,23 +38,34 @@ function Header() {
         <Container maxWidth="xl">
           <Toolbar
             disableGutters
-            sx={{ display: "flex", justifyContent: "space-between" }}
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+            }}
           >
-            <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              onClick={() => toggleDrawer(true)}
-              sx={{ ml: 2, display: { xs: "block", md: "none" } }}
-            >
-              <MenuIcon />
-            </IconButton>
+            {/* hamburger icon shows the drawer on click */}
+            {role === "REGULAR" && (
+              <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="open drawer"
+                onClick={() => toggleDrawer(true)}
+                sx={{
+                  ml: 2,
+                  display: { xs: "block", md: "none" },
+                }}
+              >
+                <MenuIcon />
+              </IconButton>
+            )}
+
+            {/* The outside of the drawer */}
             <Drawer
-              anchor="right"
-              variant="temporary"
-              open={toggle}
-              onClose={() => toggleDrawer(false)}
-              onOpen={() => toggleDrawer(true)}
+              anchor="right" //from which side the drawer slides in
+              variant="temporary" //if and how easily the drawer can be closed
+              open={toggle} //if open is true, drawer is shown
+              onClose={() => toggleDrawer(false)} //function that is called when the drawer should close
+              onOpen={() => toggleDrawer(true)} //function that is called when the drawer should open
             >
               <Box
                 sx={{
@@ -75,7 +94,9 @@ function Header() {
                             >
                               <Link
                                 to={item.path}
-                                style={{ textDecoration: "none" }}
+                                style={{
+                                  textDecoration: "none",
+                                }}
                               >
                                 {item.name}
                               </Link>
@@ -96,8 +117,7 @@ function Header() {
                     transform: "translate(-50%, 0)",
                   }}
                 >
-                  {/*ToDo: set logout logic  */}
-                  <Button text="Salir"></Button>
+                  <Button text="Salir" onClick={handleLogout}></Button>
                 </Box>
               </Box>
             </Drawer>
@@ -106,16 +126,33 @@ function Header() {
                 <AccountBalanceIcon fontSize="large" />
               </Link>
             </Box>
-            <Box sx={{ mr: 2, display: { xs: "none", md: "block" } }}>
-              {items.map((item, index) => {
-                return (
-                  <MUIButton color="secondary" key={index}>
-                    <Link to={item.path} style={{ textDecoration: "none" }}>
-                      {item.name}
-                    </Link>
-                  </MUIButton>
-                );
-              })}
+            <Box
+              sx={{
+                mr: 2,
+                display: { xs: "none", md: "block" },
+              }}
+            >
+              {role === "REGULAR" &&
+                items.map((item, index) => {
+                  return (
+                    <MUIButton color="secondary" key={index}>
+                      <Link
+                        to={item.path}
+                        style={{
+                          textDecoration: "none",
+                        }}
+                      >
+                        {item.name}
+                      </Link>
+                    </MUIButton>
+                  );
+                })}
+
+              {role && (
+                <MUIButton color="secondary" onClick={handleLogout}>
+                  Salir
+                </MUIButton>
+              )}
             </Box>
           </Toolbar>
         </Container>

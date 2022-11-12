@@ -1,6 +1,11 @@
 import axios from 'axios';
 import { walletApi } from '../../api/walletApi';
-import { setErrorMessage, setUser, startLoadingUser } from './authSlice';
+import {
+    logout,
+    setErrorMessage,
+    setUser,
+    startLoadingUser,
+} from './authSlice';
 
 export const login = (email, password) => {
     return async (dispatch, getState) => {
@@ -20,7 +25,7 @@ export const login = (email, password) => {
                     dispatch(setErrorMessage(msg));
                 }
             } else {
-                throw new Error('An unexpected error ocurred');
+                throw new Error('Ocurrio un error inesperado');
             }
         }
     };
@@ -36,7 +41,32 @@ export const renewUser = () => {
 
             dispatch(setUser(user));
         } catch (error) {
-            console.log(error);
+            throw new Error('Ocurrio un error inesperado');
         }
+    };
+};
+
+export const register = ({ email, password, firstName, lastName }) => {
+    return async (dispatch) => {
+        dispatch(startLoadingUser());
+        try {
+            await walletApi.post('/users/', {
+                email,
+                password,
+                firstName,
+                lastName,
+            });
+
+            dispatch(login(email, password));
+        } catch (error) {
+            throw new Error('Ocurrio un error inesperado');
+        }
+    };
+};
+
+export const startLogout = () => {
+    return async (dispatch) => {
+        localStorage.clear();
+        dispatch(logout());
     };
 };
