@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import styled from '@emotion/styled';
 import ToggleOnIcon from '@mui/icons-material/ToggleOn';
 import ToggleOffOutlinedIcon from '@mui/icons-material/ToggleOffOutlined';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCategories } from '../../features/transactions/thunks';
 
 const Container = styled.div`
     display: flex;
@@ -42,10 +43,16 @@ const StyledBox = styled(Box)`
 `;
 
 function Home() {
+    const dispatch = useDispatch();
     const { user } = useSelector((state) => state.auth);
     const [toggle, setToggle] = React.useState(false);
     const [hideBalance, setHideBalance] = React.useState(false);
     const [balance, setBalance] = React.useState('');
+
+    useEffect(() => {
+        dispatch(getCategories());
+    }, []);
+
     return (
         <Container>
             <Typography sx={{ marginTop: '20px' }}>
