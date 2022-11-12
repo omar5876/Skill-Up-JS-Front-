@@ -8,12 +8,16 @@ const routes = [
         path: 'wallet/cargar-saldo',
     },
     {
-        name: 'Balance',
-        path: 'wallet/balance',
+        name: 'Movimientos',
+        path: 'wallet/movimientos',
     },
     {
         name: 'Enviar Dinero',
         path: 'wallet/enviar-dinero',
+    },
+    {
+        name: 'Gastos',
+        path: 'wallet/gastos',
     },
     {
         name: 'Mi Perfil',
