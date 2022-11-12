@@ -25,7 +25,7 @@ export const login = (email, password) => {
                     dispatch(setErrorMessage(msg));
                 }
             } else {
-                throw new Error('An unexpected error ocurred');
+                throw new Error('Ocurrio un error inesperado');
             }
         }
     };
@@ -41,7 +41,25 @@ export const renewUser = () => {
 
             dispatch(setUser(user));
         } catch (error) {
-            console.log(error);
+            throw new Error('Ocurrio un error inesperado');
+        }
+    };
+};
+
+export const register = ({ email, password, firstName, lastName }) => {
+    return async (dispatch) => {
+        dispatch(startLoadingUser());
+        try {
+            await walletApi.post('/users/', {
+                email,
+                password,
+                firstName,
+                lastName,
+            });
+
+            dispatch(login(email, password));
+        } catch (error) {
+            throw new Error('Ocurrio un error inesperado');
         }
     };
 };
