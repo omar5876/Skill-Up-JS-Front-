@@ -1,6 +1,11 @@
 import axios from 'axios';
 import { walletApi } from '../../api/walletApi';
-import { setErrorMessage, setUser, startLoadingUser } from './authSlice';
+import {
+    logout,
+    setErrorMessage,
+    setUser,
+    startLoadingUser,
+} from './authSlice';
 
 export const login = (email, password) => {
     return async (dispatch, getState) => {
@@ -56,5 +61,12 @@ export const register = ({ email, password, firstName, lastName }) => {
         } catch (error) {
             throw new Error('Ocurrio un error inesperado');
         }
+    };
+};
+
+export const startLogout = () => {
+    return async (dispatch) => {
+        localStorage.clear();
+        dispatch(logout());
     };
 };
