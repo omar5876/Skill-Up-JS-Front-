@@ -17,9 +17,6 @@ import items from "./Items";
 import { Link } from "react-router-dom";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import MenuIcon from "@mui/icons-material/Menu";
-import ImageIcon from "@mui/icons-material/Image";
-import DescriptionIcon from "@mui/icons-material/Description";
-import FolderIcon from "@mui/icons-material/Folder";
 import CloseIcon from "@mui/icons-material/Close";
 import Button from "../../Button/Button";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
@@ -35,7 +32,6 @@ function Header() {
             disableGutters
             sx={{ display: "flex", justifyContent: "space-between" }}
           >
-            {/* hamburger icon shows the drawer on click */}
             <IconButton
               edge="start"
               color="inherit"
@@ -45,14 +41,12 @@ function Header() {
             >
               <MenuIcon />
             </IconButton>
-
-            {/* The outside of the drawer */}
             <Drawer
-              anchor="right" //from which side the drawer slides in
-              variant="temporary" //if and how easily the drawer can be closed
-              open={toggle} //if open is true, drawer is shown
-              onClose={() => toggleDrawer(false)} //function that is called when the drawer should close
-              onOpen={() => toggleDrawer(true)} //function that is called when the drawer should open
+              anchor="right"
+              variant="temporary"
+              open={toggle}
+              onClose={() => toggleDrawer(false)}
+              onOpen={() => toggleDrawer(true)}
             >
               <Box
                 sx={{

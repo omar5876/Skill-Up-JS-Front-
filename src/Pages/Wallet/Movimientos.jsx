@@ -18,14 +18,15 @@ const StyledBox = styled(Box)`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 550px;
   margin: auto;
   margin-top: 15px;
   flex-direction: column;
 `;
 
 const StyledList = styled(List)`
-  width: 100%;
+  max-height: 65vh;
+  min-width: 25vw;
+  overflow: scroll;
   background: white;
   color: black;
   border-radius: 5px;
@@ -59,7 +60,7 @@ function Movimientos() {
     <>
       <StyledBox>
         <Typography variant="button">Movimientos</Typography>
-        <StyledList>
+        <StyledList sx={{ maxWidth: { xs: "70vw", md: "35vw" } }}>
           {data?.map((transaction) => (
             <ListItem
               key={transaction.id}
@@ -81,10 +82,16 @@ function Movimientos() {
                 </Avatar>
               </ListItemAvatar>
               <ListItemText
+                secondaryTypographyProps={{
+                  whiteSpace: "nowrap",
+                }}
                 primary={"$ " + transaction.amount}
-                secondary={transaction.date}
+                secondary={
+                  transaction.date.split("T")[0] +
+                  " - " +
+                  transaction.description
+                }
               />
-              <ListItemText primary={"Random desc"} />
             </ListItem>
           ))}
         </StyledList>
