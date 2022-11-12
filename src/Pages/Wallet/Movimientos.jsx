@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   Box,
+  Button,
   Typography,
   List,
   ListItem,
   ListItemAvatar,
   Avatar,
 } from "@mui/material";
-import axios from "axios";
 import styled from "@emotion/styled";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import RemoveOutlinedIcon from "@mui/icons-material/RemoveOutlined";
 import ListItemText from "@mui/material/ListItemText";
+import { useSelector } from "react-redux";
 
 const StyledBox = styled(Box)`
   display: flex;
@@ -35,25 +36,7 @@ const StyledList = styled(List)`
 `;
 
 function Movimientos() {
-  const [data, setData] = useState([]);
-
-  const getTransacciones = (e) => {
-    axios.get("http://localhost:3000/transactions").then((response) => {
-      setData(response.data.body);
-    });
-  };
-
-  useEffect(() => {
-    getTransacciones(), filterIngresos();
-  }, []);
-
-  const [ingresos, setIngresos] = useState([]);
-  const filterIngresos = () => {
-    const listado = data.filter((ingreso) => ingreso.categoryId === 11);
-    setIngresos(listado);
-    //console.log(ingresos);
-    return listado;
-  };
+  const { transactions } = useSelector((state) => state.transactions);
 
   return (
     <>
@@ -62,7 +45,7 @@ function Movimientos() {
           Movimientos
         </Typography>
         <StyledList sx={{ maxWidth: { xs: "70vw", md: "35vw" } }}>
-          {data?.map((transaction) => (
+          {transactions.map((transaction) => (
             <ListItem
               key={transaction.id}
               sx={{
