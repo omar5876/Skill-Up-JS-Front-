@@ -27,7 +27,7 @@ function AppRouter() {
             <Route
                 path="/auth/*"
                 element={
-                    <PublicRoutes isAuth={!!uid}>
+                    <PublicRoutes role={role}>
                         <AuthRouter />
                     </PublicRoutes>
                 }
@@ -35,7 +35,7 @@ function AppRouter() {
             <Route
                 path="/admin/*"
                 element={
-                    <AdminRoute isAdmin={role}>
+                    <AdminRoute role={role}>
                         <AdminRouter />
                     </AdminRoute>
                 }
@@ -43,7 +43,7 @@ function AppRouter() {
             <Route
                 path="/wallet/*"
                 element={
-                    <PrivateRoute isAuth={!!uid}>
+                    <PrivateRoute role={role}>
                         <WalletRouter />
                     </PrivateRoute>
                 }
