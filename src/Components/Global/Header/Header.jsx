@@ -11,10 +11,17 @@ import {
 import items from './Items';
 import { Link } from 'react-router-dom';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { startLogout } from '../../../features/auth/thunks';
 
 function Header() {
+    const dispatch = useDispatch();
     const { uid } = useSelector((state) => state.auth);
+
+    const handleLogout = () => {
+        dispatch(startLogout());
+    };
+
     return (
         <AppBar position="static" color="default" style={{ padding: '10px' }}>
             <Container maxWidth="xl">
@@ -36,6 +43,9 @@ function Header() {
                                     </Button>
                                 );
                             })}
+                            <Button>
+                                <Link onClick={handleLogout}>Salir</Link>
+                            </Button>
                         </Box>
                     )}
                 </Toolbar>
