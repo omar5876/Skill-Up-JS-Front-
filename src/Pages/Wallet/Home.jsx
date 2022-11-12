@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import ToggleOnIcon from '@mui/icons-material/ToggleOn';
 import ToggleOffOutlinedIcon from '@mui/icons-material/ToggleOffOutlined';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCategories } from '../../features/transactions/thunks';
+import { getTransactions } from '../../features/transactions/thunks';
 
 const Container = styled.div`
     display: flex;
@@ -45,14 +45,31 @@ const StyledBox = styled(Box)`
 function Home() {
     const dispatch = useDispatch();
     const { user } = useSelector((state) => state.auth);
+    const { transactions } = useSelector((state) => state.transactions);
     const [toggle, setToggle] = React.useState(false);
     const [hideBalance, setHideBalance] = React.useState(false);
-    const [balance, setBalance] = React.useState('');
 
     useEffect(() => {
-        dispatch(getCategories());
+        dispatch(getTransactions());
     }, []);
 
+    const incomes = transactions.filter(
+        (transaction) => transaction.categoryId === 11
+    );
+    const outcomes = transactions.filter(
+        (transactions) => transactions.categoryId === 12
+    );
+
+    const totalIncomes = incomes.reduce(
+        (acum, income) => acum + parseInt(income.amount),
+        0
+    );
+
+    const totalOutcomes = outcomes.reduce(
+        (acum, income) => acum + parseInt(income.amount),
+        0
+    );
+    const balance = totalIncomes - totalOutcomes;
     return (
         <Container>
             <Typography sx={{ marginTop: '20px' }}>
@@ -84,7 +101,7 @@ function Home() {
                 <BalanceBox>
                     <Typography fontSize={14}>BALANCE</Typography>
                     <Typography variant="h5">
-                        {hideBalance ? '$ •••••' : '$ ' + balance + '500'}
+                        {hideBalance ? '$ •••••' : '$ ' + balance}
                     </Typography>
                 </BalanceBox>
             </StyledBox>
@@ -94,13 +111,13 @@ function Home() {
                 <BalanceBox sx={{ border: '2px solid green' }}>
                     <Typography fontSize={14}>BALANCE INGRESOS</Typography>
                     <Typography variant="h5">
-                        {hideBalance ? '$ •••••' : '$ ' + balance + '1000'}
+                        {hideBalance ? '$ •••••' : '$ ' + totalIncomes}
                     </Typography>
                 </BalanceBox>
                 <BalanceBox sx={{ border: '2px solid red' }}>
                     <Typography fontSize={14}>BALANCE EGRESOS</Typography>
                     <Typography variant="h5">
-                        {hideBalance ? '$ •••••' : '$ ' + balance + '500'}
+                        {hideBalance ? '$ •••••' : '$ ' + totalOutcomes}
                     </Typography>
                 </BalanceBox>
             </StyledBox>

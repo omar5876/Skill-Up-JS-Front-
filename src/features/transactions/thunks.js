@@ -6,7 +6,7 @@ import {
     startLoadingTransactions,
 } from './transactionsSlice';
 
-export const getCategories = () => {
+export const getTransactions = () => {
     return async (dispatch, getState) => {
         try {
             const { uid, role } = getState().auth;
