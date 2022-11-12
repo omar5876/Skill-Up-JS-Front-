@@ -43,7 +43,6 @@ function Header() {
               justifyContent: "space-between",
             }}
           >
-            {/* hamburger icon shows the drawer on click */}
             {role === "REGULAR" && (
               <IconButton
                 edge="start"
@@ -58,14 +57,12 @@ function Header() {
                 <MenuIcon />
               </IconButton>
             )}
-
-            {/* The outside of the drawer */}
             <Drawer
-              anchor="right" //from which side the drawer slides in
-              variant="temporary" //if and how easily the drawer can be closed
-              open={toggle} //if open is true, drawer is shown
-              onClose={() => toggleDrawer(false)} //function that is called when the drawer should close
-              onOpen={() => toggleDrawer(true)} //function that is called when the drawer should open
+              anchor="right"
+              variant="temporary"
+              open={toggle}
+              onClose={() => toggleDrawer(false)}
+              onOpen={() => toggleDrawer(true)}
             >
               <Box
                 sx={{

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
   Box,
-  Button,
   Typography,
   List,
   ListItem,
@@ -59,7 +58,9 @@ function Movimientos() {
   return (
     <>
       <StyledBox>
-        <Typography variant="button">Movimientos</Typography>
+        <Typography variant="h5" style={{ marginBottom: ".5em" }}>
+          Movimientos
+        </Typography>
         <StyledList sx={{ maxWidth: { xs: "70vw", md: "35vw" } }}>
           {data?.map((transaction) => (
             <ListItem
