@@ -5,10 +5,10 @@ import { Button, TableCell, TableRow } from "@mui/material";
 import { Link } from "react-router-dom";
 
 function RowTable({ item }) {
-  const [editarSaldo, setEditarSaldo] = useState();
+  const [editarTransaccion, setEditarTransaccion] = useState();
 
   const onPressEdit = () => {
-    setEditarSaldo(item);
+    setEditarTransaccion(item);
   };
 
   return (
@@ -27,7 +27,7 @@ function RowTable({ item }) {
         <TableCell align="right">{item.categoryId}</TableCell>
         <TableCell align="right">
           <Button>
-            <Link to={`/editar/$item.id`} onClick={onPressEdit}>
+            <Link to={`/editar/${item.id}`} onClick={onPressEdit}>
               Editar
             </Link>
           </Button>

@@ -5,10 +5,10 @@ import { Button, TableCell, TableRow } from "@mui/material";
 import { Link } from "react-router-dom";
 
 function Rows({ item }) {
-  const [editarSaldo, setEditarSaldo] = useState();
+  const [editarCategoria, setEditarCategoria] = useState();
 
   const onPressEdit = () => {
-    setEditarSaldo(item);
+    setEditarCategoria(item);
   };
 
   return (
@@ -25,7 +25,7 @@ function Rows({ item }) {
         </TableCell>
         <TableCell align="right">
           <Button>
-            <Link to={`/editar/$item.id`} onClick={onPressEdit}>
+            <Link to={`/editar-category/${item.id}`} onClick={onPressEdit}>
               Editar
             </Link>
           </Button>
