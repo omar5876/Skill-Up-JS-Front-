@@ -39,10 +39,13 @@ const UserForm = () => {
             dispatch(register(values));
         },
     });
-
     return (
         <Container>
-            <form onSubmit={formik.handleSubmit}>
+            <form onSubmit={formik.handleSubmit}         style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}>
                 <TextField
                     fullWidth
                     id="firstName"
@@ -75,7 +78,6 @@ const UserForm = () => {
                     }
                     style={{ marginBottom: '1em' }}
                 />
-
                 <TextField
                     fullWidth
                     id="email"

@@ -3,7 +3,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { CardActionArea, CardActions } from "@mui/material";
-import Button from "../../Components/Button/Button";
+import Button from "../../../Components/Button/Button";
 import { Link } from "react-router-dom";
 
 // Faltan traer datos con REDUX
@@ -27,7 +27,7 @@ function Profile() {
         </CardContent>
       </CardActionArea>
       <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-        <Link to={`user/edit/${USERDATA.ID}`}>
+        <Link to={`user/edit/`}>
           <Button text="Editar datos" />
         </Link>
         <Button text="Eliminar usuario" />
