@@ -1,28 +1,27 @@
-import React, { useState } from "react";
-import TransactionsDashboard from "../../Components/Dashboard/TransactionsDashboard/Dashboard";
-import { Typography } from "@mui/material";
-import styled from "@emotion/styled";
+import React, { useEffect } from 'react';
+import TransactionsDashboard from '../../Components/Dashboard/TransactionsDashboard/Dashboard';
+import { Typography } from '@mui/material';
+import styled from '@emotion/styled';
+import { useDispatch } from 'react-redux';
+import { getTransactions } from '../../features/transactions/thunks';
 
 const Container = styled.div`
-  margin: 20px;
-  text-align: center;
+    margin: 20px;
+    text-align: center;
 `;
 
 function TransactionsBackoffice() {
-  const [data, setData] = useState([]);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getTransactions());
+    }, []);
 
-  const getTransacciones = (e) => {
-    // ToDo: change to redux logic and correct endpoint
-    axios.get("http://localhost:3000/transactions").then((response) => {
-      setData(response.data.body);
-    });
-  };
-  return (
-    <Container>
-      <Typography variant="h4">Administrar Transacciones</Typography>
-      <TransactionsDashboard data={data} />
-    </Container>
-  );
+    return (
+        <Container>
+            <Typography variant="h4">Administrar Transacciones</Typography>
+            <TransactionsDashboard />
+        </Container>
+    );
 }
 
 export default TransactionsBackoffice;
