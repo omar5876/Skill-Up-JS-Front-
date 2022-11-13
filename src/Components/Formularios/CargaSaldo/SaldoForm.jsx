@@ -6,7 +6,7 @@ import Button from '../../Button/Button';
 import { useDispatch } from 'react-redux';
 import { newTransaction } from '../../../features/transactions/thunks';
 
-const SaldoForm = () => {
+const SaldoForm = ({ categoryId }) => {
     const dispatch = useDispatch();
     const validationSchema = yup.object({
         description: yup
@@ -30,7 +30,6 @@ const SaldoForm = () => {
         },
         validationSchema: validationSchema,
         onSubmit: ({ description, amount }) => {
-            const categoryId = 12;
             dispatch(newTransaction({ description, amount, categoryId }));
         },
     });

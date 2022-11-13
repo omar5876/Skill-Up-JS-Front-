@@ -56,7 +56,7 @@ function Movimientos() {
                         >
                             <ListItemAvatar>
                                 <Avatar>
-                                    {transaction.categoryId === 11 ? (
+                                    {transaction.categoryId === 12 ? (
                                         <AddOutlinedIcon color="primary" />
                                     ) : (
                                         <RemoveOutlinedIcon color="primary" />
