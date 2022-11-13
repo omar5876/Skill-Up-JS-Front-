@@ -16,6 +16,12 @@ export const categoriesSlice = createSlice({
             state.categories = action.payload;
             state.errorMessage = '';
         },
+        setDeleteCategory: (state, action) => {
+            state.isLoading = false;
+            state.categories = state.categories.filter(
+                (category) => category.id !== action.payload
+            );
+        },
         setErrorMessage: (state, action) => {
             state.isLoading = false;
             state.errorMessage = action.payload;
@@ -33,4 +39,5 @@ export const {
     setCategories,
     clearCategories,
     setErrorMessage,
+    setDeleteCategory,
 } = categoriesSlice.actions;
