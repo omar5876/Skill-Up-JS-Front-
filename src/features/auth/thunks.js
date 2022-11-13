@@ -1,5 +1,8 @@
 import axios from 'axios';
 import { walletApi } from '../../api/walletApi';
+import { clearCategories } from '../categories/categoriesSlice';
+import { clearTransactions } from '../transactions/transactionsSlice';
+import { clearUsers } from '../users/usersSlice';
 import {
     logout,
     setErrorMessage,
@@ -68,5 +71,8 @@ export const startLogout = () => {
     return async (dispatch) => {
         localStorage.clear();
         dispatch(logout());
+        dispatch(clearTransactions());
+        dispatch(clearUsers());
+        dispatch(clearCategories());
     };
 };
