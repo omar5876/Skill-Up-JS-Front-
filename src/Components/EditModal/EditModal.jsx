@@ -10,10 +10,6 @@ const EditModal = ({ open, onClose, title, form }) => {
       <form style={{ textAlign: "center" }}>
         <DialogTitle>MODIFICAR {title}</DialogTitle>
         <DialogContent>{form}</DialogContent>
-        <DialogActions sx={{ justifyContent: "center" }}>
-          <Button onClick={onClose} text="Cancelar" />
-          <Button type="submit" text="Guardar" />
-        </DialogActions>
       </form>
     </Dialog>
   );

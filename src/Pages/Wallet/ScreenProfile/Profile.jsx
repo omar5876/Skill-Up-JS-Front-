@@ -7,12 +7,17 @@ import { CardActionArea, CardActions } from "@mui/material";
 import Button from "../../../Components/Button/Button";
 import UserForm from "../../../Components/Formularios/UserForm/UserForm";
 import EditModal from "../../../Components/EditModal/EditModal";
+import { useSelector } from "react-redux";
+import Upload from "../../../Components/UploadImages/Upload";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 // Faltan traer datos con REDUX
 const campos = [{ name: "Nombre" }, { name: "Apellido" }, { name: "Email" }];
 
 function Profile() {
-  // const userData = useSelector(store => store.DATOSDELUSUARIO)
+  const { firstName, lastName, email, avatar } = useSelector(
+    (state) => state.auth
+  );
   const [isOpenEditModal, setIsOpenEditModal] = useState(false);
 
   const handleEditClick = () => {
@@ -25,15 +30,29 @@ function Profile() {
 
   return (
     <Card>
-      {/* Avatar */}
       <CardActionArea>
         <CardContent>
-          <Typography sx={{ m: 6 }} variant="h6">
-            {campos.map((i) => (
-              <Typography key={i.name} sx={{ m: 4 }} variant="h6">
-                {i.name}:{/* Traer los datos del usuario con REDUX {i.DATO} */}
-              </Typography>
-            ))}
+          <Typography sx={{ m: 6, textAlign: "center" }} variant="h6">
+            {avatar ? (
+              <img
+                src={avatar}
+                width="100px"
+                height="100px"
+                style={{ borderRadius: "50%" }}
+              />
+            ) : (
+              <AccountCircleIcon sx={{ fontSize: "100px" }} />
+            )}
+            <Upload />
+            <Typography sx={{ m: 4 }} variant="h6">
+              Nombre: {firstName}
+            </Typography>
+            <Typography sx={{ m: 4 }} variant="h6">
+              Apellido: {lastName}
+            </Typography>
+            <Typography sx={{ m: 4 }} variant="h6">
+              Email: {email}
+            </Typography>
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -45,7 +64,7 @@ function Profile() {
         open={isOpenEditModal}
         onClose={handleEditModalClose}
         title="USUARIO"
-        form={<UserForm />}
+        form={<UserForm onClose={handleEditModalClose} />}
       />
     </Card>
   );
