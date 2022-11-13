@@ -18,10 +18,10 @@ const EnvioForm = () => {
         "El monto debe ser mayor que 0",
         (value) => value > 0
       ),
-    user: yup
-      .string("Ingrese el nombre del destinatario")
-      .min(5, "El nombre del destinatario debe tener minimo de 5 caracteres")
-      .required("El nombre del destinatario es requerido"),
+    email: yup
+      .string("Ingrese el email del destinatario")
+      .email("El email del destinatario debe ser valido")
+      .required("Email del destinatario es requerido"),
   });
 
   const formik = useFormik({
@@ -66,13 +66,13 @@ const EnvioForm = () => {
         />
         <TextField
           fullWidth
-          id="user"
-          name="user"
-          label="Usuario"
-          value={formik.values.user}
+          id="email"
+          name="email"
+          label="Email del destinatario"
+          value={formik.values.email}
           onChange={formik.handleChange}
-          error={formik.touched.user && Boolean(formik.errors.user)}
-          helperText={formik.touched.user && formik.errors.user}
+          error={formik.touched.email && Boolean(formik.errors.email)}
+          helperText={formik.touched.email && formik.errors.email}
           style={{ marginBottom: "1em" }}
         />
 
