@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
     Box,
     Button,
@@ -8,7 +8,6 @@ import {
     ListItemAvatar,
     Avatar,
 } from '@mui/material';
-import axios from 'axios';
 import styled from '@emotion/styled';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
@@ -19,14 +18,15 @@ const StyledBox = styled(Box)`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 550px;
     margin: auto;
     margin-top: 15px;
     flex-direction: column;
 `;
 
 const StyledList = styled(List)`
-    width: 100%;
+    max-height: 65vh;
+    min-width: 25vw;
+    overflow: scroll;
     background: white;
     color: black;
     border-radius: 5px;
