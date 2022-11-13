@@ -2,6 +2,7 @@ import axios from 'axios';
 import { walletApi } from '../../api/walletApi';
 import { alertConfirmation } from '../../Components/Alert/Alert';
 import {
+    setDeleteTransaction,
     setErrorMessage,
     setNewTransaction,
     setTransactions,
@@ -47,6 +48,27 @@ export const newTransaction = ({ description, amount, categoryId }) => {
             );
             console.log(data);
             dispatch(setNewTransaction(data.body));
+            alertConfirmation(data.message);
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                if (error) {
+                    const err = error.response.data;
+                    const { msg } = err;
+                    dispatch(setErrorMessage(msg));
+                }
+            } else {
+                throw new Error('An unexpected error ocurred');
+            }
+        }
+    };
+};
+
+export const deleteTransaction = (id) => {
+    return async (dispatch, getState) => {
+        try {
+            dispatch(startLoadingTransactions());
+            const { data } = await walletApi.delete(`/transactions/${id}`);
+            dispatch(setDeleteTransaction(data.body.id));
             alertConfirmation(data.message);
         } catch (error) {
             if (axios.isAxiosError(error)) {
