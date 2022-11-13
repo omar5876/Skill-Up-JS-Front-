@@ -3,7 +3,9 @@ import { createSlice } from '@reduxjs/toolkit';
 export const authSlice = createSlice({
     name: 'auth',
     initialState: {
-        user: '',
+        firstName: '',
+        lastName: '',
+        avatar: '',
         uid: '',
         role: '',
         isLoading: false,
@@ -16,7 +18,9 @@ export const authSlice = createSlice({
         setUser: (state, action) => {
             state.isLoading = false;
             state.uid = action.payload.id;
-            state.user = action.payload.firstName;
+            state.firstName = action.payload.firstName;
+            state.lastName = action.payload.lastName;
+            state.avatar = action.payload.avatar;
             state.role = action.payload.role;
             state.errorMessage = '';
         },
@@ -27,7 +31,9 @@ export const authSlice = createSlice({
         logout: (state) => {
             state.role = '';
             state.uid = '';
-            state.user = '';
+            state.firstName = '';
+            state.lastName = '';
+            state.avatar = '';
             state.errorMessage = '';
             state.isLoading = false;
         },
