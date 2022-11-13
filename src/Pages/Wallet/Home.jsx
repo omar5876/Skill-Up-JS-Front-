@@ -44,7 +44,7 @@ const StyledBox = styled(Box)`
 
 function Home() {
     const dispatch = useDispatch();
-    const { user } = useSelector((state) => state.auth);
+    const { firstName } = useSelector((state) => state.auth);
     const { transactions } = useSelector((state) => state.transactions);
     const [toggle, setToggle] = React.useState(false);
     const [hideBalance, setHideBalance] = React.useState(false);
@@ -73,7 +73,7 @@ function Home() {
     return (
         <Container>
             <Typography sx={{ marginTop: '20px' }}>
-                Hola, <b>{user}</b>
+                Hola, <b>{firstName}</b>
             </Typography>
             <StyledBox sx={{ flexDirection: 'column' }}>
                 <StyledBox>
