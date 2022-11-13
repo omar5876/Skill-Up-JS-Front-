@@ -65,7 +65,7 @@ function Movimientos() {
                             </ListItemAvatar>
                             <ListItemText
                                 primary={'$ ' + transaction.amount}
-                                secondary={transaction.date}
+                                secondary={transaction.createdAt}
                             />
                             <ListItemText primary={'Random desc'} />
                         </ListItem>
