@@ -8,7 +8,7 @@ const ContainerProfile = () => {
       <Box
         sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
       >
-        <Typography gutterBottom variant="h2" component="div">
+        <Typography variant="h5" style={{ margin: ".5em 0" }}>
           Mi perfil
         </Typography>
         <Profile />

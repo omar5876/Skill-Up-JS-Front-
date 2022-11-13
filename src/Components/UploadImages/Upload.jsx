@@ -20,16 +20,6 @@ function Upload() {
 
   return (
     <Container>
-      {/* <Box>
-        <form onSubmit={(e) => onSubmit(e)}>
-          <input
-            onChange={(e) => onFileChange(e)}
-            id="file-upload"
-            type="file"
-          />{" "}
-          <Button type="submit">Subir imagen</Button>
-        </form>
-      </Box> */}
       <Box>
         <form onSubmit={(e) => onSubmit(e)}>
           <input
@@ -42,7 +32,7 @@ function Upload() {
           />
           <label htmlFor="upload-button">
             <Button variant="raised" component="span" type="submit">
-              Upload
+              Cargar imagen
             </Button>
           </label>
         </form>

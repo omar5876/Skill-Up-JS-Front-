@@ -4,10 +4,15 @@ import * as yup from "yup";
 import { TextField, Container } from "@mui/material";
 import Button from "../../Button/Button";
 import { useDispatch } from "react-redux";
-import { register } from "../../../features/auth/thunks";
+import { register as registerUser } from "../../../features/auth/thunks";
+import { editUser } from "../../../features/users/thunks";
+import { useSelector } from "react-redux";
 
-const UserForm = ({ register }) => {
+const UserForm = ({ register, onClose }) => {
   const dispatch = useDispatch();
+  const { firstName, lastName, email, password } = useSelector(
+    (state) => state.auth
+  );
   const validationSchema = yup.object({
     firstName: yup
       .string("Ingrese su nombre")
@@ -26,19 +31,33 @@ const UserForm = ({ register }) => {
       .min(8, "Las contraseña deben tener minimo de 8 caracteres")
       .required("Contraseña es requerido"),
   });
-
-  const formik = useFormik({
-    initialValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-    },
-    validationSchema: validationSchema,
-    onSubmit: (values) => {
-      dispatch(register(values));
-    },
-  });
+  let formik;
+  if (register) {
+    formik = useFormik({
+      initialValues: {
+        firstName: "",
+        lastName: "",
+        email: "",
+      },
+      validationSchema: validationSchema,
+      onSubmit: (values) => {
+        dispatch(registerUser(values));
+      },
+    });
+  } else {
+    formik = useFormik({
+      initialValues: {
+        firstName,
+        lastName,
+        email,
+      },
+      validationSchema: validationSchema,
+      onSubmit: (values) => {
+        console.log("aaa");
+        dispatch(editUser(values));
+      },
+    });
+  }
   return (
     <Container>
       <form
@@ -82,19 +101,27 @@ const UserForm = ({ register }) => {
           helperText={formik.touched.email && formik.errors.email}
           style={{ marginBottom: "1em" }}
         />
-        <TextField
-          fullWidth
-          id="password"
-          name="password"
-          label="Contraseña"
-          type="password"
-          value={formik.values.password}
-          onChange={formik.handleChange}
-          error={formik.touched.password && Boolean(formik.errors.password)}
-          helperText={formik.touched.password && formik.errors.password}
-          style={{ marginBottom: "1em" }}
-        />
+        {register && (
+          <TextField
+            fullWidth
+            id="password"
+            name="password"
+            label="Contraseña"
+            type="password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            error={formik.touched.password && Boolean(formik.errors.password)}
+            helperText={formik.touched.password && formik.errors.password}
+            style={{ marginBottom: "1em" }}
+          />
+        )}
         {register && <Button text="Registrarse" type="submit" />}
+        {!register && (
+          <div style={{ display: "flex", gap: "5px" }}>
+            <Button onClick={onClose} text="Cancelar" />
+            <Button type="submit" text="Guardar" />
+          </div>
+        )}
       </form>
     </Container>
   );
