@@ -16,6 +16,12 @@ export const usersSlice = createSlice({
             state.users = action.payload;
             state.errorMessage = '';
         },
+        setDeleteUser: (state, action) => {
+            state.isLoading = false;
+            state.users = state.users.filter(
+                (user) => user.id !== action.payload
+            );
+        },
         setErrorMessage: (state, action) => {
             state.isLoading = false;
             state.errorMessage = action.payload;
@@ -28,5 +34,10 @@ export const usersSlice = createSlice({
     },
 });
 
-export const { startLoadingUsers, setUsers, clearUsers, setErrorMessage } =
-    usersSlice.actions;
+export const {
+    startLoadingUsers,
+    setUsers,
+    clearUsers,
+    setErrorMessage,
+    setDeleteUser,
+} = usersSlice.actions;

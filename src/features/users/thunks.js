@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { walletApi } from '../../api/walletApi';
-import { setUsers } from './usersSlice';
+import { alertConfirmation } from '../../Components/Alert/Alert';
+import { setDeleteUser, setUsers, startLoadingUsers } from './usersSlice';
 
 export const getUsers = () => {
     return async (dispatch, getState) => {
@@ -8,6 +9,27 @@ export const getUsers = () => {
             const { data } = await walletApi.get(`users/`);
             console.log(data);
             dispatch(setUsers(data.body));
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                if (error) {
+                    const err = error.response.data;
+                    const { msg } = err;
+                    dispatch(setErrorMessage(msg));
+                }
+            } else {
+                throw new Error('An unexpected error ocurred');
+            }
+        }
+    };
+};
+
+export const deleteUser = (id) => {
+    return async (dispatch, getState) => {
+        try {
+            dispatch(startLoadingUsers());
+            const { data } = await walletApi.delete(`/users/${id}`);
+            dispatch(setDeleteUser(id));
+            alertConfirmation(data.message);
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 if (error) {
