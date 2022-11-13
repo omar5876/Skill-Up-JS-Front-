@@ -23,8 +23,8 @@ function RowTable({ item }) {
         </TableCell>
         <TableCell align="right">{item.amount}</TableCell>
         <TableCell align="right">{item.createdAt}</TableCell>
-        <TableCell align="right">{item.userId}</TableCell>
-        <TableCell align="right">{item.categoryId}</TableCell>
+        <TableCell align="right">{item.User.firstName}</TableCell>
+        <TableCell align="right">{item.Category.name}</TableCell>
         <TableCell align="right">
           <Button>
             <Link to={`/editar/$item.id`} onClick={onPressEdit}>
