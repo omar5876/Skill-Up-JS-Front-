@@ -32,7 +32,7 @@ function Register() {
         <Typography variant="h5" style={{ marginBottom: "1em" }}>
           Ingrese sus datos para registrarse como usuario
         </Typography>
-        <UserForm />
+        <UserForm register />
         <Typography variant="subtitle1">
           ¿Ya tienes cuenta?
           <Button component={Link} to="/auth/login" underline="none">
