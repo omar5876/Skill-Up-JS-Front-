@@ -12,7 +12,7 @@ export function alertError(titulo, mensaje) {
   Swal.fire({
     title: titulo,
     icon: "error",
-    text: mensaje,
+    html: mensaje,
   });
 }
 
