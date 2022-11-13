@@ -7,10 +7,10 @@ import Button from "../Button/Button";
 const EditModal = ({ open, onClose, title, form }) => {
   return (
     <Dialog open={open} onClose={onClose}>
-      <form style={{ textAlign: "center" }}>
+      <div style={{ textAlign: "center" }}>
         <DialogTitle>MODIFICAR {title}</DialogTitle>
         <DialogContent>{form}</DialogContent>
-      </form>
+      </div>
     </Dialog>
   );
 };

@@ -1,5 +1,8 @@
 import axios from "axios";
 import { walletApi } from "../../api/walletApi";
+import { clearCategories } from "../categories/categoriesSlice";
+import { clearTransactions } from "../transactions/transactionsSlice";
+import { clearUsers } from "../users/usersSlice";
 import {
   logout,
   setErrorMessage,
@@ -11,13 +14,10 @@ export const login = (email, password) => {
   return async (dispatch, getState) => {
     try {
       dispatch(startLoadingUser());
-      const { data } = await walletApi.post(
-        "http://localhost:3000/auth/login",
-        {
-          email,
-          password,
-        }
-      );
+      const { data } = await walletApi.post("/auth/login", {
+        email,
+        password,
+      });
       localStorage.setItem("access_token", data.body.accessToken);
       dispatch(setUser(data.body.user));
     } catch (error) {
@@ -71,5 +71,8 @@ export const startLogout = () => {
   return async (dispatch) => {
     localStorage.clear();
     dispatch(logout());
+    dispatch(clearTransactions());
+    dispatch(clearUsers());
+    dispatch(clearCategories());
   };
 };

@@ -5,6 +5,7 @@ import { TextField, Container } from "@mui/material";
 import Button from "../../Button/Button";
 import { useDispatch } from "react-redux";
 import { register as registerUser } from "../../../features/auth/thunks";
+import { editUser } from "../../../features/users/thunks";
 import { useSelector } from "react-redux";
 
 const UserForm = ({ register, onClose }) => {
@@ -49,11 +50,11 @@ const UserForm = ({ register, onClose }) => {
         firstName,
         lastName,
         email,
-        password,
       },
       validationSchema: validationSchema,
       onSubmit: (values) => {
-        dispatch(register(values));
+        console.log("aaa");
+        dispatch(editUser(values));
       },
     });
   }
@@ -100,24 +101,26 @@ const UserForm = ({ register, onClose }) => {
           helperText={formik.touched.email && formik.errors.email}
           style={{ marginBottom: "1em" }}
         />
-        <TextField
-          fullWidth
-          id="password"
-          name="password"
-          label="Contraseña"
-          type="password"
-          value={formik.values.password}
-          onChange={formik.handleChange}
-          error={formik.touched.password && Boolean(formik.errors.password)}
-          helperText={formik.touched.password && formik.errors.password}
-          style={{ marginBottom: "1em" }}
-        />
+        {register && (
+          <TextField
+            fullWidth
+            id="password"
+            name="password"
+            label="Contraseña"
+            type="password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            error={formik.touched.password && Boolean(formik.errors.password)}
+            helperText={formik.touched.password && formik.errors.password}
+            style={{ marginBottom: "1em" }}
+          />
+        )}
         {register && <Button text="Registrarse" type="submit" />}
         {!register && (
-          <>
+          <div style={{ display: "flex", gap: "5px" }}>
             <Button onClick={onClose} text="Cancelar" />
             <Button type="submit" text="Guardar" />
-          </>
+          </div>
         )}
       </form>
     </Container>
