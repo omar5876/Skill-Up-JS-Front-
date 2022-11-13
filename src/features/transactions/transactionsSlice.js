@@ -16,6 +16,10 @@ export const transactionsSlice = createSlice({
             state.transactions = action.payload;
             state.errorMessage = '';
         },
+        setNewTransaction: (state, action) => {
+            state.isLoading = false;
+            state.transactions = [action.payload, ...state.transactions];
+        },
         setErrorMessage: (state, action) => {
             state.isLoading = false;
             state.errorMessage = action.payload;
@@ -33,4 +37,5 @@ export const {
     setTransactions,
     clearTransactions,
     setErrorMessage,
+    setNewTransaction,
 } = transactionsSlice.actions;
