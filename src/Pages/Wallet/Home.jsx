@@ -54,10 +54,10 @@ function Home() {
     }, []);
 
     const incomes = transactions.filter(
-        (transaction) => transaction.categoryId === 11
+        (transaction) => transaction.categoryId === 12
     );
     const outcomes = transactions.filter(
-        (transactions) => transactions.categoryId === 12
+        (transactions) => transactions.categoryId === 11
     );
 
     const totalIncomes = incomes.reduce(
