@@ -33,7 +33,7 @@ function Rows({ item }) {
                 <TableCell align="right">
                     <Button>
                         <Link
-                            to={`/editar-category/${item.id}`}
+                            to={`/admin/editar-category/${item.id}`}
                             onClick={onPressEdit}
                         >
                             Editar

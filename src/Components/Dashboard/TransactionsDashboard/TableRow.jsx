@@ -35,7 +35,10 @@ function RowTable({ item }) {
                 <TableCell align="right">{item.categoryId}</TableCell>
                 <TableCell align="right">
                     <Button>
-                        <Link to={`/editar/${item.id}`} onClick={onPressEdit}>
+                        <Link
+                            to={`/admin/editar/${item.id}`}
+                            onClick={onPressEdit}
+                        >
                             Editar
                         </Link>
                     </Button>

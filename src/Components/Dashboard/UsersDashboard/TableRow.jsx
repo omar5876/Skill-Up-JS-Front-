@@ -35,7 +35,7 @@ function Rows({ item }) {
                 <TableCell align="right">
                     <Button>
                         <Link
-                            to={`/editar-usuario/${item.id}`}
+                            to={`/admin/editar-usuario/${item.id}`}
                             onClick={onPressEdit}
                         >
                             Editar
