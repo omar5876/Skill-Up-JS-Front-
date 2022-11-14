@@ -1,28 +1,56 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Login from "../Pages/Login";
-import Home from "../Pages/Home";
-import Register from "../Pages/Register";
-import CargaSaldo from "../Pages/CargaSaldo";
-import Movimientos from "../Pages/Movimientos";
-import Balance from "../Pages/Balance";
-import EnvioDinero from "../Pages/EnvioDinero";
-
+import React, { useEffect } from 'react';
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Navigate,
+} from 'react-router-dom';
+import WalletRouter from './WalletRouter';
+import PublicRoutes from './PublicRoutes';
+import PrivateRoute from './PrivateRoute';
+import AuthRouter from './AuthRouter';
+import { useDispatch, useSelector } from 'react-redux';
+import { renewUser } from '../features/auth/thunks';
+import AdminRoute from './AdminRoute';
+import AdminRouter from './AdminRouter';
 
 function AppRouter() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="login" element={<Login />} />{" "}
-        <Route path="register" element={<Register />} />
-        <Route path="/" element={<Home />} />
-        <Route path="movimientos" element={<Movimientos />} />{" "}
-        <Route path="cargar-saldo" element={<CargaSaldo />} />
-        <Route path="/balance" element={<Balance />} />
-        <Route path="/enviar-dinero" element={<EnvioDinero />} />
-      </Routes>
-    </Router>
-  );
+    const dispatch = useDispatch();
+    const { uid, role } = useSelector((state) => state.auth);
+
+    useEffect(() => {
+        dispatch(renewUser());
+    }, [dispatch]);
+
+    return (
+        <Routes>
+            <Route
+                path="/auth/*"
+                element={
+                    <PublicRoutes role={role}>
+                        <AuthRouter />
+                    </PublicRoutes>
+                }
+            />
+            <Route
+                path="/admin/*"
+                element={
+                    <AdminRoute role={role}>
+                        <AdminRouter />
+                    </AdminRoute>
+                }
+            />
+            <Route
+                path="/wallet/*"
+                element={
+                    <PrivateRoute role={role}>
+                        <WalletRouter />
+                    </PrivateRoute>
+                }
+            />
+            <Route path="/*" element={<Navigate to="/auth/login" />} />
+        </Routes>
+    );
 }
 
 export default AppRouter;

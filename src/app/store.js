@@ -1,8 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import { authSlice } from '../features/auth/authSlice';
+import { categoriesSlice } from '../features/categories/categoriesSlice';
+import { transactionsSlice } from '../features/transactions/transactionsSlice';
+import { usersSlice } from '../features/users/usersSlice';
 
 export default configureStore({
-  reducer: {
-    counter: counterReducer,
-  },
+    reducer: {
+        auth: authSlice.reducer,
+        transactions: transactionsSlice.reducer,
+        users: usersSlice.reducer,
+        categories: categoriesSlice.reducer,
+    },
 });
