@@ -58,18 +58,21 @@ function Movimientos() {
                         >
                             <ListItemAvatar>
                                 <Avatar>
-                                    {transaction.categoryId === 12 ? (
+                                    {transaction.categoryId === '12' ? (
                                         <AddOutlinedIcon color="primary" />
                                     ) : (
                                         <RemoveOutlinedIcon color="primary" />
                                     )}
                                 </Avatar>
                             </ListItemAvatar>
-                            <ListItemText
-                                primary={'$ ' + transaction.amount}
-                                secondary={transaction.createdAt}
-                            />
-                            <ListItemText primary={transaction.description} />
+                       <ListItemText
+                            primary={"$ " + transaction.amount}
+                            secondary={
+                            transaction.createdAt.split("T")[0] +
+                            " - " +
+                            transaction.description
+                                            }
+                                        />
                         </ListItem>
                     ))}
                 </StyledList>
